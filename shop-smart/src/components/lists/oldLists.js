@@ -4,7 +4,7 @@ import OldList from "./oldList";
 import styled from "styled-components";
 
 const StyledOldLists = styled.div`
-    width: 12.5%;
+    width: 20%;
     h2{
         text-align:center;
     }
@@ -20,7 +20,7 @@ const OldLists = (props) => {
                     <OldList list={list} key={list[0].id} />
                 );
             })}
-            <h2>Previously Used Lists:</h2>
+            <h3>Previously Used Lists:</h3>
         </StyledOldLists>
     );
 };

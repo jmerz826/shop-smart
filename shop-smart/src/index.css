@@ -53,3 +53,7 @@ table {
 	background-color: #4AA3FC;
 	display: flex;
 }
+
+h2{
+	font-size: 3rem;
+}

@@ -2,6 +2,14 @@ import React, { useState } from "react";
 import { connect } from "react-redux";
 import { addListToLists } from '../../actions';
 import CurrentList from "./currentList";
+import styled from "styled-components";
+
+const StyledNewList = styled.div`
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    width:100%;
+`
 
 const initialFormValues = {
     item: '',
@@ -40,7 +48,7 @@ const NewList = (props) => {
     }
 
     return (
-        <div>
+        <StyledNewList>
             <h2>Create New Shopping List:</h2>
             <form>
                 <label> Add item: 
@@ -65,7 +73,7 @@ const NewList = (props) => {
                 <button onClick={handleSave}>Save List!</button>
             </form>
             <CurrentList list={list} />
-        </div>
+        </StyledNewList>
     );
 };
 
