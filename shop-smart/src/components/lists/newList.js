@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
+import { addToList } from '../../actions';
+import CurrentList from "./currentList";
 
 const initialFormValues = {
     item: '',
@@ -8,14 +10,25 @@ const initialFormValues = {
 
 const NewList = (props) => {
     const [formValues, setFormValues] = useState(initialFormValues);
+    const [list, setList] = useState([]);
+
 
     const handleChange = (e) => {
-        console.log(formValues);
         setFormValues({
             ...formValues,
             [e.target.name]: e.target.value
         })
-    }
+    };
+
+    const handleAdd = (e) => {
+        e.preventDefault();
+        const newItem = {
+            item: formValues.item,
+            price: formValues.price
+        }
+        setList([...list, newItem]);
+        setFormValues(initialFormValues);
+    };
 
     return (
         <div>
@@ -39,11 +52,17 @@ const NewList = (props) => {
                         placeholder="optional"
                     />
                 </label>
+                <button onClick={handleAdd}>Add item!</button>
             </form>
+            {list && <CurrentList list={list} />}
         </div>
     );
 };
 
+const mapStateToProps = state => {
+    return ({
+        previousLists: state.previousLists
+    })
+}
 
-
-export default NewList;
+export default connect(mapStateToProps, {addToList})(NewList);
