@@ -1,6 +1,6 @@
 import Header from "./components/header";
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import NewList from "./components/newList";
+import NewList from "./components/lists/newList";
 import Meals from "./components/meals/meals";
 import PantryItems from "./components/pantry/pantryItems";
 import Calendar from "./components/calendar";
