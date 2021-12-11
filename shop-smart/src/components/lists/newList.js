@@ -34,6 +34,7 @@ const NewList = (props) => {
         e.preventDefault();
         const newList = [{...list, id:Date.now()}];
         props.addToList(newList);
+        setList('');
     }
 
     return (

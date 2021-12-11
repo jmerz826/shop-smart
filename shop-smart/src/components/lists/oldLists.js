@@ -1,17 +1,15 @@
 import React from "react";
 import { connect } from "react-redux";
+import OldList from "./oldList";
 
 const OldLists = (props) => {
-    console.log(props.previousLists);
     return (
         <div>
             <h1>old lists:</h1>
             {props.previousLists && props.previousLists.map(list => {
                 return (
-                    <div>
-                        <h4>List {list.id}</h4>
-                    </div>
-                )
+                    <OldList list={list} key={list.id} />
+                );
             })}
         </div>
     );
