@@ -24,6 +24,12 @@ const StyledHeader = styled.div`
         border: 1px solid black;
         padding:2%;
         border-radius:12px;
+        background-color:limegreen;
+        color:white;
+    }
+
+    a:hover{
+        background-color:#4AA3FC;
     }
 
     .green{

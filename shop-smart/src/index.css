@@ -48,3 +48,8 @@ table {
 }
 
 /* ------------- ERIC MEYERS CSS RESET ABOVE ------------- */
+
+.lists{
+	background-color: #4AA3FC;
+	display: flex;
+}

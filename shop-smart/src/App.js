@@ -13,8 +13,10 @@ function App() {
         <Header />
         <Switch>
         <Route exact path='/'>
-            <OldLists />
-            <NewList />
+            <div className="lists">
+              <OldLists />
+              <NewList />
+            </div>
         </Route>
         <Route path='/meals'>
             <Meals />

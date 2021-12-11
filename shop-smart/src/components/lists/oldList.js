@@ -12,6 +12,7 @@ const OldList = (props) => {
     return (
         <StyledOldList>
             <h4>List {list[0].id}</h4>
+            <h4>Total: ${ list[0].total}</h4>
             <ul>
                 <li>{list[0][0].item}</li>
                 <li>{list[0][1]?.item}</li>

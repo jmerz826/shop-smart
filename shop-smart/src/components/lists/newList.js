@@ -11,7 +11,7 @@ const initialFormValues = {
 const NewList = (props) => {
     const [formValues, setFormValues] = useState(initialFormValues);
     const [list, setList] = useState('');
-
+    const [total, setTotal] = useState(0);
 
     const handleChange = (e) => {
         setFormValues({
@@ -27,14 +27,16 @@ const NewList = (props) => {
             price: formValues.price
         }
         setList([...list, newItem]);
+        setTotal(Number(total) + Number(newItem.price));
         setFormValues(initialFormValues);
     };
 
     const handleSave = (e) => {
         e.preventDefault();
-        const newList = [{...list, id:Date.now()}];
+        const newList = [{...list, id:Date.now(), total:total}];
         props.addListToLists(newList);
         setList('');
+        setTotal(0);
     }
 
     return (
