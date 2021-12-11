@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
-import { addToList } from '../../actions';
+import { addListToLists } from '../../actions';
 import CurrentList from "./currentList";
 
 const initialFormValues = {
@@ -33,7 +33,7 @@ const NewList = (props) => {
     const handleSave = (e) => {
         e.preventDefault();
         const newList = [{...list, id:Date.now()}];
-        props.addToList(newList);
+        props.addListToLists(newList);
         setList('');
     }
 
@@ -73,4 +73,4 @@ const mapStateToProps = state => {
     })
 }
 
-export default connect(mapStateToProps, {addToList})(NewList);
+export default connect(mapStateToProps, {addListToLists})(NewList);
