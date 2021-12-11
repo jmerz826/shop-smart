@@ -7,20 +7,17 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import reducer from './reducers';
 
-import {ListContext} from './contexts/ListContext';
 import { createStore } from 'redux';
 
 const store = createStore(reducer);
 
 ReactDOM.render(
   <React.StrictMode>
-    <ListContext.Provider value={{}}>
     <Provider store={store}>
       <Router>
         <App />
       </Router>
     </Provider>
-    </ListContext.Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );

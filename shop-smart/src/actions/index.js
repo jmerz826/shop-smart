@@ -1,7 +1,7 @@
-export const ADD_TO_LIST = 'ADD_TO_LIST';
+export const ADD_LIST_TO_LISTS = 'ADD_LIST_TO_LISTS';
 
 export const addToList = (item) => {
     return ({
-        type: ADD_TO_LIST, payload: item
+        type: ADD_LIST_TO_LISTS, payload: item
     })
 };

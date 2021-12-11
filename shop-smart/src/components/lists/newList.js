@@ -10,7 +10,7 @@ const initialFormValues = {
 
 const NewList = (props) => {
     const [formValues, setFormValues] = useState(initialFormValues);
-    const [list, setList] = useState([]);
+    const [list, setList] = useState('');
 
 
     const handleChange = (e) => {
@@ -30,6 +30,12 @@ const NewList = (props) => {
         setFormValues(initialFormValues);
     };
 
+    const handleSave = (e) => {
+        e.preventDefault();
+        const newList = [{...list, id:Date.now()}];
+        props.addToList(newList);
+    }
+
     return (
         <div>
             <h2>Create New Shopping List:</h2>
@@ -43,7 +49,7 @@ const NewList = (props) => {
                         placeholder="Eggs"
                     />
                 </label>
-                <label> Price:
+                <label> Price($):
                     <input
                         type='number'
                         name='price'
@@ -53,8 +59,9 @@ const NewList = (props) => {
                     />
                 </label>
                 <button onClick={handleAdd}>Add item!</button>
+                <button onClick={handleSave}>Save List!</button>
             </form>
-            {list && <CurrentList list={list} />}
+            <CurrentList list={list} />
         </div>
     );
 };
