@@ -47,7 +47,7 @@ const NewList = (props) => {
                         name='item'
                         value={formValues.item}
                         onChange={handleChange}
-                        placeholder="Eggs"
+                        placeholder="ex: Eggs"
                     />
                 </label>
                 <label> Price($):

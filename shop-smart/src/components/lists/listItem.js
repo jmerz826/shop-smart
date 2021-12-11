@@ -4,7 +4,7 @@ const ListItem = (props) => {
     return (
         <div>
             <ul>
-                <li>{props.item.item} (${ props.item.price })</li>
+                <li>{props.item.item} {props.item.price? `($${props.item.price})` : ''}</li>
             </ul>
         </div>
     )
