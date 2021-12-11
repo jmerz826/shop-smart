@@ -6,7 +6,6 @@ const initialState = {
 
 
 const reducer = (state = initialState, action) => {
-    console.log(state.previousLists)
     switch (action.type) {
         case ADD_LIST_TO_LISTS:
             if (state.previousLists) {

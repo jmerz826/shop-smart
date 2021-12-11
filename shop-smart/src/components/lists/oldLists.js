@@ -3,13 +3,12 @@ import { connect } from "react-redux";
 import OldList from "./oldList";
 
 const OldLists = (props) => {
-    console.log(props.previousLists);
     return (
         <div>
             <h1>old lists:</h1>
             {props.previousLists && props.previousLists.map(list => {
                 return (
-                    <OldList list={list} key={list.id} />
+                    <OldList list={list} key={list[0].id} />
                 );
             })}
         </div>
