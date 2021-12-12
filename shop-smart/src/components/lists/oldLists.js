@@ -10,6 +10,7 @@ const StyledOldLists = styled.div`
     }
     display:flex;
     flex-direction:column-reverse;
+    justify-content:space-evenly;
 `
 
 const OldLists = (props) => {

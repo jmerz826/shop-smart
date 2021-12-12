@@ -72,7 +72,7 @@ const NewList = (props) => {
                 <button onClick={handleAdd}>Add item!</button>
                 <button onClick={handleSave}>Save List!</button>
             </form>
-            <CurrentList list={list} />
+            <CurrentList list={list} total={ total}/>
         </StyledNewList>
     );
 };
