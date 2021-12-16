@@ -16,8 +16,8 @@ const StyledFooter = styled.footer`
 const Footer = (props) => {
     return (
         <StyledFooter>
-            <h3>⚠️THIS SITE IS A WORK IN PROGRESS⚠️</h3>
-            <h4>Site created exclusively by John Merz</h4>
+            <h5>⚠️THIS SITE IS A WORK IN PROGRESS⚠️</h5>
+            <h5>Site created exclusively by John Merz, who is learning in public 😄</h5>
         </StyledFooter>
     );
 };

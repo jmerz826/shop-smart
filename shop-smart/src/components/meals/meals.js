@@ -3,7 +3,7 @@ import React from "react";
 const Meals = props => {
     return (
         <div>
-            <h1>MEALS!!!!!!</h1>
+            <h3>Meals:</h3>
         </div>
     );
 };

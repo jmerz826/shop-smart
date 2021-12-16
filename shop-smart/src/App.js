@@ -7,6 +7,7 @@ import Calendar from "./components/calendar";
 import Shop from "./components/shop";
 import OldLists from "./components/lists/oldLists";
 import Footer from "./components/footer";
+import MealsHomeDisplay from "./components/meals/mealsHomeDisplay";
 
 function App() {
   return (
@@ -16,7 +17,8 @@ function App() {
         <Route exact path='/'>
             <div className="lists">
               <OldLists />
-              <NewList />
+            <NewList />
+            <MealsHomeDisplay />
             </div>
         </Route>
         <Route path='/meals'>

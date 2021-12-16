@@ -9,6 +9,30 @@ const StyledNewList = styled.div`
     flex-direction:column;
     align-items:center;
     width:100%;
+
+    form{
+        margin-top:1%;
+    }
+
+    form label,input, button{
+        font-size:1.2rem;
+    }
+    button{
+        background-color:limegreen;
+        border: none;
+        border-radius: 8px;
+        display:inline-block;
+    }
+    button:hover{
+        background-color:lime;
+    }
+    #save-btn{
+        display:block;
+        margin:auto;
+        padding:1%;
+        margin-top:1%;
+    }
+
 `
 
 const initialFormValues = {
@@ -72,8 +96,8 @@ const NewList = (props) => {
                         placeholder="optional"
                     />
                 </label>
-                <button onClick={handleAdd}>Add item!</button>
-                <button onClick={handleSave}>Save List!</button>
+                <button onClick={handleAdd}>Add item</button>
+                <button onClick={handleSave} id='save-btn'>Save List!</button>
             </form>
             <CurrentList list={list} total={ total}/>
         </StyledNewList>

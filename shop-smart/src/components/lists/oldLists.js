@@ -4,13 +4,13 @@ import OldList from "./oldList";
 import styled from "styled-components";
 
 const StyledOldLists = styled.div`
-    width: 20%;
-    h2{
+    width: 25%;
+    h3{
         text-align:center;
     }
     display:flex;
     flex-direction:column-reverse;
-    justify-content:space-evenly;
+    height:100%;
 `
 
 const OldLists = (props) => {
