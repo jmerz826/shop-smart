@@ -13,6 +13,9 @@ const StyledOldList = styled.div`
         margin-left:2%;
         font-size:1.2rem;
     }
+    li{
+        text-transform:capitalize;
+    }
 `
 
 const OldList = (props) => {
