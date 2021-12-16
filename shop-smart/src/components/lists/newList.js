@@ -37,6 +37,8 @@ const NewList = (props) => {
         setList([...list, newItem]);
         setTotal(Number(total) + Number(newItem.price));
         setFormValues(initialFormValues);
+        document.getElementById('item-input').focus();
+        document.getElementById('item-input').select();
     };
 
     const handleSave = (e) => {
@@ -58,6 +60,7 @@ const NewList = (props) => {
                         value={formValues.item}
                         onChange={handleChange}
                         placeholder="ex: Eggs"
+                        id='item-input'
                     />
                 </label>
                 <label> Price($):

@@ -6,6 +6,7 @@ import PantryItems from "./components/pantry/pantryItems";
 import Calendar from "./components/calendar";
 import Shop from "./components/shop";
 import OldLists from "./components/lists/oldLists";
+import Footer from "./components/footer";
 
 function App() {
   return (
@@ -30,7 +31,8 @@ function App() {
         <Route path='/shop'>
           <Shop />
         </Route>
-        </Switch>
+      </Switch>
+      <Footer />
     </Router>
   );
 }
