@@ -67,10 +67,13 @@ const NewList = (props) => {
 
     const handleSave = (e) => {
         e.preventDefault();
-        const newList = [{...list, id:Date.now(), total:total}];
-        props.addListToLists(newList);
-        setList('');
-        setTotal(0);
+        if (list) {
+          const newList = [{ ...list, id: Date.now(), total: total }];
+          props.addListToLists(newList);
+          setList("");
+          setTotal(0);
+        }
+        
     }
 
     return (
