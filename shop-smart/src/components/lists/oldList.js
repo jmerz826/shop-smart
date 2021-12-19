@@ -28,7 +28,7 @@ const OldList = (props) => {
             <ul>
                 <li>{list[0][0].item}</li>
                 {list[0][1] && <li>{list[0][1]?.item}</li>}
-                {list[0][2] && <li>{list[0][1]?.item}</li>}
+                {list[0][2] && <li>{list[0][2]?.item}</li>}
                 {list[0][3] ? <li>...</li> : ''}
             </ul>
         </StyledOldList>
