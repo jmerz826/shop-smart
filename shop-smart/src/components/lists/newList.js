@@ -72,15 +72,22 @@ const initialFormValues = {
     price:''
 }
 
+let idCounter = 0;
 
 const NewList = (props) => {
     const [formValues, setFormValues] = useState(initialFormValues);
     const [list, setList] = useState('');
     const [total, setTotal] = useState(0);
+    
 
     const modal = document.querySelector('#clear-modal');
 
 
+  const idGenerator = () => {
+    idCounter++;
+    return idCounter;
+    }
+  
     const handleChange = (e) => {
         setFormValues({
             ...formValues,
@@ -106,7 +113,7 @@ const NewList = (props) => {
     const handleSave = (e) => {
         e.preventDefault();
         if (list) {
-            const newList = [{ ...list, id: Date.now(), total: total }];
+            const newList = [{ ...list, displayId: idGenerator(), total: total, id: Date.now() }];
             props.addListToLists(newList);
             setList("");
             setTotal(0);
