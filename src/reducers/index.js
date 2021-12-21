@@ -1,7 +1,8 @@
-import { ADD_LIST_TO_LISTS } from "../actions";
+import { ADD_LIST_TO_LISTS, ADD_ITEM_TO_PANTRY } from "../actions";
 
 const initialState = {
-    previousLists: []
+    previousLists: [],
+    pantryItems: ['granola']
 };
 
 
@@ -18,7 +19,19 @@ const reducer = (state = initialState, action) => {
                     ...state,
                     previousLists: [action.payload]
                 });
-            }
+            };
+        case ADD_ITEM_TO_PANTRY:
+            if (state.pantryItems) {
+                return ({
+                    ...state,
+                    pantryItems: [...state.pantryItems, action.payload]
+                });
+            } else {
+                return ({
+                    ...state,
+                    pantryItems: [action.payload]
+                });
+            };
             
         default:
             return{state}
