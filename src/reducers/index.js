@@ -7,6 +7,7 @@ const initialState = {
 
 
 const reducer = (state = initialState, action) => {
+    console.log(state);
     switch (action.type) {
         case ADD_LIST_TO_LISTS:
             if (state.previousLists) {
@@ -22,6 +23,7 @@ const reducer = (state = initialState, action) => {
             };
         case ADD_ITEM_TO_PANTRY:
             if (state.pantryItems) {
+                console.log(...state.pantryItems);
                 return ({
                     ...state,
                     pantryItems: [...state.pantryItems, action.payload]

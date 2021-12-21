@@ -2,6 +2,11 @@ import React, {useState} from "react";
 import { connect } from 'react-redux';
 import { addItemToPantry } from "../../actions";
 import PantryItem from "./pantryItem";
+import styled from "styled-components";
+
+const StyledPantry = styled.div`
+    background-color:gray;
+`
 
 const initialFormValues = {
     item:''
@@ -9,6 +14,7 @@ const initialFormValues = {
 
 const PantryItems = (props) => {
     const [formValues, setFormValues] = useState(initialFormValues);
+    console.log(props);
 
     const handleChange = (e) => {
         setFormValues({
@@ -26,7 +32,7 @@ const PantryItems = (props) => {
     }
 
     return (
-        <div>
+        <StyledPantry>
             <h2>Update your Pantry</h2>
             <form>
                 <h3>Add item to My Pantry</h3>
@@ -50,14 +56,14 @@ const PantryItems = (props) => {
                     }
                 </ul>
             </div>
-        </div>
+        </StyledPantry>
     );
 };
 
 const mapStateToProps = state => {
-    return ({
-        pantryItems: state.pantryItems
-    })
+    const { pantryItems } = state;
+
+    return { pantryItems };
 }
 
 export default connect(mapStateToProps, {addItemToPantry})(PantryItems);
