@@ -26,11 +26,15 @@ const StyledNewList = styled.div`
     button:hover{
         background-color:lime;
     }
-    #save-btn{
+    .bottom-btn{
         display:block;
         margin:auto;
-        padding:1%;
+        padding:2%;
         margin-top:1%;
+    }
+    .bottom-buttons{
+        display:flex;
+        margin: 0 35%;
     }
 
 `
@@ -53,27 +57,33 @@ const NewList = (props) => {
     };
 
     const handleAdd = (e) => {
-        e.preventDefault();
+      e.preventDefault();
+      if (formValues.item) {
         const newItem = {
-            item: formValues.item,
-            price: formValues.price
-        }
+          item: formValues.item,
+          price: formValues.price,
+        };
         setList([...list, newItem]);
         setTotal(Number(total) + Number(newItem.price));
         setFormValues(initialFormValues);
-        document.getElementById('item-input').focus();
-        document.getElementById('item-input').select();
+        document.getElementById("item-input").focus();
+        document.getElementById("item-input").select();
+      }
     };
 
     const handleSave = (e) => {
         e.preventDefault();
         if (list) {
-          const newList = [{ ...list, id: Date.now(), total: total }];
-          props.addListToLists(newList);
-          setList("");
-          setTotal(0);
+            const newList = [{ ...list, id: Date.now(), total: total }];
+            props.addListToLists(newList);
+            setList("");
+            setTotal(0);
         }
-        
+    };
+
+    const handleClear = (e) => {
+        e.preventDefault();
+        setList('');
     }
 
     return (
@@ -100,7 +110,10 @@ const NewList = (props) => {
                     />
                 </label>
                 <button onClick={handleAdd}>Add item</button>
-                <button onClick={handleSave} id='save-btn'>Save List!</button>
+                <div className="bottom-buttons">
+                    <button onClick={handleSave} className='bottom-btn'>Save List!</button>
+                    <button onClick={handleClear} className='bottom-btn'>Clear List</button>
+                </div>
             </form>
             <CurrentList list={list} total={ total}/>
         </StyledNewList>
