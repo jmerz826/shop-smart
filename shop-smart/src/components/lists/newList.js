@@ -9,6 +9,7 @@ const StyledNewList = styled.div`
   flex-direction: column;
   align-items: center;
   width: 100%;
+  margin-bottom:1%;
 
   form {
     margin-top: 1%;
@@ -38,6 +39,7 @@ const StyledNewList = styled.div`
   .bottom-buttons {
     display: flex;
     margin: 0 35%;
+    margin-top: 1%;
   }
 
   #clear-modal {
