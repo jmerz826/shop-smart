@@ -4,6 +4,11 @@ import styled from "styled-components";
 
 const StyledCurrentList = styled.div`
     text-align:center;
+    background-color:beige;
+    width:60%;
+    margin-top:1%;
+    border: 2px solid black;
+    border-radius:16px;
 
     ul{
         list-style-type:circle;
@@ -12,7 +17,7 @@ const StyledCurrentList = styled.div`
         font-size:1.2rem;
         display:inline-block;
         text-align:left;
-        width:100%;
+        margin:0 auto;
     }
 `
 
