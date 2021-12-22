@@ -2,6 +2,7 @@ import React from "react";
 import styled from 'styled-components';
 import { connect } from "react-redux";
 import { removeListFromLists } from "../../actions";
+import ModalListItem from "./modalListItem";
 
 const StyledOldList = styled.div`
   border: 2px solid black;
@@ -91,6 +92,19 @@ const OldList = (props) => {
     props.removeListFromLists(providedList);
   };
 
+  const populateModal = () => {
+    const arr = [];
+    for (const [key] in list[0]) {
+      arr.push(list[0][key]?.item)
+    };
+    for (let i = 0; i < 3; i++){
+      arr.pop();
+    }
+    return arr;
+  }
+
+  const modalPopulated = populateModal();
+
   return (
     <StyledOldList>
       <div
@@ -122,9 +136,11 @@ const OldList = (props) => {
       >
         <h4>List {list[0].displayId}</h4>
         <ul>
-          <li>{list[0][0].item}</li>
-          {list[0][1] && <li>{list[0][1]?.item}</li>}
-          {list[0][2] && <li>{list[0][2]?.item}</li>}
+          {modalPopulated.map(el => {
+            return (
+              <ModalListItem item={el} key={el}/>
+            );
+          })}          
         </ul>
         <button
           onClick={() => {

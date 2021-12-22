@@ -10,6 +10,16 @@ const StyledDiv = styled.div`
     li{
         text-transform: capitalize;
     }
+    .delete-btn{
+        background-color: transparent;
+    }
+    .delete-btn:hover{
+        background-color:transparent;
+        cursor:pointer;
+        -webkit-transform: scale(1.2);
+        -ms-transform: scale(1.2);
+        transform: scale(1.2);
+    }
 `
 
 const ListItem = (props) => {
@@ -21,7 +31,12 @@ const ListItem = (props) => {
 
     return (
         <StyledDiv>
-            <li>{props.item.item} <span className="italic">{props.item.price ? ` - $${props.item.price}` : ''}</span> {pantryItems && pantrySearch(props.item.item) && <span>👍</span>}</li>
+            <li>
+                {props.item.item}
+                <span className="italic">{props.item.price ? ` - $${props.item.price}` : ''}</span>
+                {pantryItems && pantrySearch(props.item.item) && <span>👍</span>}
+                <button className="delete-btn">❌</button>
+            </li>
         </StyledDiv>
     );
 };

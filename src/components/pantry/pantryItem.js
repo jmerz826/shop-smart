@@ -11,7 +11,15 @@ const StyledLi = styled.li`
     :hover{
         button{
             visibility:visible;
+            background-color:transparent;
+            
         }
+    }
+    button:hover{
+        cursor:pointer;
+        -webkit-transform: scale(1.2);
+        -ms-transform: scale(1.2);
+        transform: scale(1.2);
     }
 
 `
