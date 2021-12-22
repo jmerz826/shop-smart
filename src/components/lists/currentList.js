@@ -22,6 +22,8 @@ const StyledCurrentList = styled.div`
 `;
 
 const CurrentList = (props) => {
+  console.log(props.list);
+  console.log(Object.values(props.list));
   return (
     <StyledCurrentList>
       <h3>Current List:</h3>

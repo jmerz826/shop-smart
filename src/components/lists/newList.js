@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
-import { addListToLists } from '../../actions';
+import { addListToLists, addItemToCurrentList, clearCurrentList } from '../../actions';
 import CurrentList from "./currentList";
 import styled from "styled-components";
 
@@ -76,7 +76,8 @@ let idCounter = 0;
 
 const NewList = (props) => {
     const [formValues, setFormValues] = useState(initialFormValues);
-    const [list, setList] = useState('');
+    // const [list, setList] = useState('');
+  const { list } = props;
     const [total, setTotal] = useState(0);
 
     const modal = document.querySelector('#clear-modal');
@@ -100,7 +101,7 @@ const NewList = (props) => {
           item: formValues.item.toLowerCase(),
           price: formValues.price,
         };
-        setList([...list, newItem]);
+        props.addItemToCurrentList(newItem);
         setTotal(Number(total) + Number(newItem.price));
         setFormValues(initialFormValues);
         document.getElementById("item-input").focus();
@@ -113,7 +114,7 @@ const NewList = (props) => {
         if (list) {
             const newList = [{ ...list, displayId: idGenerator(), total: total, id: Date.now() }];
             props.addListToLists(newList);
-            setList("");
+            props.clearCurrentList();
             setTotal(0);
         }
     };
@@ -125,7 +126,7 @@ const NewList = (props) => {
 
     const handleClear = (e) => {
         e.preventDefault();
-        setList('');
+        props.clearCurrentList();
         toggleModal(e);
     }
 
@@ -169,9 +170,10 @@ const NewList = (props) => {
 };
 
 const mapStateToProps = state => {
-    return ({
-        previousLists: state.previousLists
-    })
-}
+  return ({
+    previousLists: state.previousLists,
+    list: state.currentListItems
+  });
+};
 
-export default connect(mapStateToProps, {addListToLists})(NewList);
+export default connect(mapStateToProps, {addListToLists, addItemToCurrentList, clearCurrentList})(NewList);
