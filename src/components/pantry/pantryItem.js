@@ -17,7 +17,7 @@ const StyledLi = styled.li`
 `
 
 const PantryItem = (props) => {
-    const { item, pantryItems } = props;
+    const { item } = props;
 
     const handleDelete = (i) => {
         props.removeItemFromPantry(i);        
@@ -32,7 +32,7 @@ const PantryItem = (props) => {
 
 const mapStateToProps = state => {
     return ({
-        pantryItems: state.pantryItems
+        state
     });
 };
 
