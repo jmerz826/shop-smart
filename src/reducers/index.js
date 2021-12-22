@@ -1,4 +1,5 @@
-import { ADD_LIST_TO_LISTS, ADD_ITEM_TO_PANTRY } from "../actions";
+import { ADD_LIST_TO_LISTS, ADD_ITEM_TO_PANTRY, REMOVE_ITEM_FROM_PANTRY } from "../actions";
+import pantryItems from "../components/pantry/pantryItems";
 
 const initialState = {
     previousLists: [],
@@ -7,7 +8,6 @@ const initialState = {
 
 
 const reducer = (state = initialState, action) => {
-    console.log(state);
     switch (action.type) {
         case ADD_LIST_TO_LISTS:
             if (state.previousLists) {
@@ -34,6 +34,11 @@ const reducer = (state = initialState, action) => {
                     pantryItems: [action.payload]
                 });
             };
+        case REMOVE_ITEM_FROM_PANTRY:
+            return ({
+                ...state,
+                pantryItems: state.pantryItems.filter(el => el !== action.payload)
+            })
             
         default:
             return{state}

@@ -5,7 +5,31 @@ import PantryItem from "./pantryItem";
 import styled from "styled-components";
 
 const StyledPantry = styled.div`
-    background-color:gray;
+    background-color:lightgray;
+    text-align:center;
+    padding-top:1%;
+
+    .container{
+        display:flex;
+        margin-top:1%;
+        padding-bottom:1%;
+    }
+    form{
+        width:50%;
+    }
+    .pantry-inventory{
+        width:50%;
+    }
+    ul{
+        list-style-type:circle;
+        list-style-position:inside;
+        margin-left:2%;
+        font-size:1.2rem;
+        display:inline-block;
+        text-align:left;
+        margin:0 auto;
+        text-transform: capitalize;
+    }
 `
 
 const initialFormValues = {
@@ -14,7 +38,6 @@ const initialFormValues = {
 
 const PantryItems = (props) => {
     const [formValues, setFormValues] = useState(initialFormValues);
-    console.log(props);
 
     const handleChange = (e) => {
         setFormValues({
@@ -26,37 +49,44 @@ const PantryItems = (props) => {
     const handleSubmit = e => {
         e.preventDefault();
 
-        const newItem = formValues.item;
-        props.addItemToPantry(newItem);
-        setFormValues(initialFormValues);
+        if (formValues.item) {
+            const newItem = formValues.item;
+            props.addItemToPantry(newItem);
+            setFormValues(initialFormValues);
+        }
     }
 
     return (
-        <StyledPantry>
-            <h2>Update your Pantry</h2>
-            <form>
-                <h3>Add item to My Pantry</h3>
-                <label> Item:
-                    <input
-                        name='item'
-                        type='text'
-                        value={formValues.item}
-                        onChange={handleChange}
-                    />
-                </label>
-                <button onClick={handleSubmit}>Add to Pantry!</button>
-            </form>
-            <div>
-                <h3>My Pantry</h3>
-                <ul>
-                    {
-                        props.pantryItems ? props.pantryItems.map(item => {
-                            return <PantryItem item={item} key={item}/>
-                        }) : 'nothing in pantry yet!'
-                    }
-                </ul>
-            </div>
-        </StyledPantry>
+      <StyledPantry>
+        <h2>Update your Pantry</h2>
+        <div className="container">
+          <form>
+            <h3>Add item to My Pantry</h3>
+            <label>
+              {" "}
+              Item:
+              <input
+                name="item"
+                type="text"
+                value={formValues.item}
+                            onChange={handleChange}
+                            placeholder="eg: Apples"
+              />
+            </label>
+            <button onClick={handleSubmit}>Add to Pantry!</button>
+          </form>
+          <div className="pantry-inventory">
+            <h3>My Pantry</h3>
+            <ul>
+              {props.pantryItems
+                ? props.pantryItems.map((item) => {
+                    return <PantryItem item={item} key={item} />;
+                  })
+                : "nothing in pantry yet!"}
+            </ul>
+          </div>
+        </div>
+      </StyledPantry>
     );
 };
 

@@ -146,7 +146,7 @@ const NewList = (props) => {
                         name='item'
                         value={formValues.item}
                         onChange={handleChange}
-                        placeholder="ex: Eggs"
+                        placeholder="eg: Eggs"
                         id='item-input'
                     />
                 </label>

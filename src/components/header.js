@@ -6,6 +6,7 @@ const StyledHeader = styled.div`
     display: flex;
     background-color: #FECA70;
     padding:1%;
+    border-bottom: 2px groove black;
 
     h2{
         width:25%;
