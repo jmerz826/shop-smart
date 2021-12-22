@@ -1,8 +1,10 @@
-import { ADD_LIST_TO_LISTS, ADD_ITEM_TO_PANTRY, REMOVE_ITEM_FROM_PANTRY, REMOVE_LIST_FROM_LISTS } from "../actions";
+import { stat } from "fs";
+import { ADD_LIST_TO_LISTS, ADD_ITEM_TO_PANTRY, REMOVE_ITEM_FROM_PANTRY, REMOVE_LIST_FROM_LISTS, REMOVE_ITEM_FROM_CURRENT_LIST } from "../actions";
 
 const initialState = {
     previousLists: [],
-    pantryItems: []
+    pantryItems: [],
+    currentListItems: []
 };
 
 const reducer = (state = initialState, action) => {
@@ -40,9 +42,19 @@ const reducer = (state = initialState, action) => {
             return ({
                 ...state,
                 previousLists: state.previousLists.filter(el => el !== action.payload)
-            })
-        
-            
+            });
+        case REMOVE_ITEM_FROM_CURRENT_LIST:
+            if (state.currentListItems) {
+                return ({
+                    ...state,
+                    currentListItems: [...state.currentListItems, action.payload]
+                })
+            } else {
+                return ({
+                    ...state,
+                    currentListItems: action.payload
+                });
+            }; 
         default:
             return{state}
     }

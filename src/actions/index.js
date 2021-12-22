@@ -2,6 +2,7 @@ export const ADD_LIST_TO_LISTS = 'ADD_LIST_TO_LISTS';
 export const ADD_ITEM_TO_PANTRY = 'ADD_ITEM_TO_PANTRY';
 export const REMOVE_ITEM_FROM_PANTRY = 'REMOVE_ITEM_FROM_PANTRY';
 export const REMOVE_LIST_FROM_LISTS = 'REMOVE_LIST_FROM_LISTS';
+export const REMOVE_ITEM_FROM_CURRENT_LIST = 'REMOVE_ITEM_FROM_CURRENT_LIST';
 
 export const addListToLists = (list) => {
     return ({
@@ -24,5 +25,12 @@ export const removeItemFromPantry = (item) => {
 export const removeListFromLists = (list) => {
     return ({
         type: REMOVE_LIST_FROM_LISTS, payload: list
-    })
-}
+    });
+};
+
+
+export const removeItemFromCurrentList = (item) => {
+    return ({
+        type: REMOVE_ITEM_FROM_CURRENT_LIST, payload: item
+    });
+};
