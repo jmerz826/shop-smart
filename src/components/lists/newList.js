@@ -78,12 +78,10 @@ const NewList = (props) => {
     const [formValues, setFormValues] = useState(initialFormValues);
     const [list, setList] = useState('');
     const [total, setTotal] = useState(0);
-    
 
     const modal = document.querySelector('#clear-modal');
-
-
-  const idGenerator = () => {
+  
+    const idGenerator = () => {
     idCounter++;
     return idCounter;
     }
@@ -167,7 +165,7 @@ const NewList = (props) => {
             </form>
             <CurrentList list={list} total={ total}/>
         </StyledNewList>
-    );
+  );
 };
 
 const mapStateToProps = state => {
