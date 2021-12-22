@@ -23,7 +23,6 @@ const StyledCurrentList = styled.div`
 
 const CurrentList = (props) => {
   console.log(props.list);
-  console.log(Object.values(props.list));
   return (
     <StyledCurrentList>
       <h3>Current List:</h3>
@@ -31,8 +30,9 @@ const CurrentList = (props) => {
       {!props.list && <h5>No items yet, add some stuff!</h5>}
       <ul>
         {props.list &&
-          props.list.map((item) => {
-            return <ListItem item={item} key={item.item} />;
+          Object.values(props.list).map((item) => {
+            console.log(item);
+            return <ListItem item={item} key={item} />;
           })}
       </ul>
     </StyledCurrentList>
