@@ -13,13 +13,13 @@ const StyledCurrentList = styled.div`
     ul{
         list-style-type:circle;
         list-style-position:inside;
-        margin-left:2%;
         font-size:1.2rem;
         display:inline-block;
         text-align:left;
         margin:0 auto;
+        margin-bottom:1%;
     }
-`
+`;
 
 const CurrentList = (props) => {
   return (

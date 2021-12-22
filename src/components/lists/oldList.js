@@ -1,5 +1,7 @@
 import React from "react";
 import styled from 'styled-components';
+import { connect } from "react-redux";
+import { removeListFromLists } from "../../actions";
 
 const StyledOldList = styled.div`
   border: 2px solid black;
@@ -63,61 +65,83 @@ const StyledOldList = styled.div`
 `;
 
 const OldList = (props) => {
-    const { list } = props;
+  const { list } = props;
 
-    
-
-    const expandOldList = (list) => {
-        const modals = document.querySelectorAll('.old-list-modal');
-        const modalsArray = Array.from(modals);
-        const targetModal = modalsArray.find(el => Number(el.id) === Number(list.id));
-
-        targetModal.classList.remove('hidden');
-    }
-
-    const closeModal = (list) => {
-        const modals = document.querySelectorAll('.old-list-modal');
-        const modalsArray = Array.from(modals);
-        const targetModal = modalsArray.find(el => Number(el.id) === Number(list.id));
-
-        targetModal.classList.add('hidden');
-    }
-    
-    return (
-      <StyledOldList>
-        <div onClick={() => {
-          expandOldList(list[0]);
-        }}>
-          <h4>List {list[0].displayId}</h4>
-          <h5>Total: ${list[0].total}</h5>
-          <ul>
-            <li>{list[0][0].item}</li>
-            {list[0][1] && <li>{list[0][1]?.item}</li>}
-            {list[0][2] && <li>{list[0][2]?.item}</li>}
-            {list[0][3] ? <li>...</li> : ""}
-          </ul>
-          <div className="btns">
-            <button className="reveal-on-hover">Set to Current</button>
-            <button className="reveal-on-hover delete">Delete</button>
-          </div>
-        </div>
-        <div className="old-list-modal hidden" id={list[0].id} onClick={() => {closeModal(list[0])}}>
-          <h4>List {list[0].displayId}</h4>
-          <ul>
-            <li>{list[0][0].item}</li>
-            {list[0][1] && <li>{list[0][1]?.item}</li>}
-            {list[0][2] && <li>{list[0][2]?.item}</li>}
-          </ul>
-          <button
-            onClick={() => {
-              closeModal(list[0]);
-            }}
-          >
-            Close Window
-          </button>
-        </div>
-      </StyledOldList>
+  const expandOldList = (list) => {
+    const modals = document.querySelectorAll(".old-list-modal");
+    const modalsArray = Array.from(modals);
+    const targetModal = modalsArray.find(
+      (el) => Number(el.id) === Number(list.id)
     );
+
+    targetModal.classList.remove("hidden");
+  };
+
+  const closeModal = (list) => {
+    const modals = document.querySelectorAll(".old-list-modal");
+    const modalsArray = Array.from(modals);
+    const targetModal = modalsArray.find(
+      (el) => Number(el.id) === Number(list.id)
+    );
+
+    targetModal.classList.add("hidden");
+  };
+
+  const handleDelete = (providedList) => {
+    props.removeListFromLists(providedList);
+  };
+
+  return (
+    <StyledOldList>
+      <div
+        onClick={() => {
+          expandOldList(list[0]);
+        }}
+      >
+        <h4>List {list[0].displayId}</h4>
+        <h5>Total: ${list[0].total}</h5>
+        <ul>
+          <li>{list[0][0].item}</li>
+          {list[0][1] && <li>{list[0][1]?.item}</li>}
+          {list[0][2] && <li>{list[0][2]?.item}</li>}
+          {list[0][3] ? <li>...</li> : ""}
+        </ul>
+        <div className="btns">
+          <button className="reveal-on-hover">Set to Current</button>
+          <button className="reveal-on-hover delete" onClick={() => {
+            handleDelete(list);
+          }}>Delete</button>
+        </div>
+      </div>
+      <div
+        className="old-list-modal hidden"
+        id={list[0].id}
+        onClick={() => {
+          closeModal(list[0]);
+        }}
+      >
+        <h4>List {list[0].displayId}</h4>
+        <ul>
+          <li>{list[0][0].item}</li>
+          {list[0][1] && <li>{list[0][1]?.item}</li>}
+          {list[0][2] && <li>{list[0][2]?.item}</li>}
+        </ul>
+        <button
+          onClick={() => {
+            closeModal(list[0]);
+          }}
+        >
+          Close Window
+        </button>
+      </div>
+    </StyledOldList>
+  );
 };
 
-export default OldList;
+const mapStateToProps = state => {
+  return ({
+    state
+  })
+}
+
+export default connect(mapStateToProps, {removeListFromLists})(OldList);

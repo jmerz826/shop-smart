@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { connect } from "react-redux";
 
 const StyledDiv = styled.div`
     .italic{
@@ -12,11 +13,23 @@ const StyledDiv = styled.div`
 `
 
 const ListItem = (props) => {
+    const { pantryItems } = props;
+
+    const pantrySearch = (i) => {
+        return pantryItems.includes(i);
+    }
+
     return (
         <StyledDiv>
-            <li>{props.item.item} <span className="italic">{props.item.price ? ` - $${props.item.price}` : ''}</span></li>
+            <li>{props.item.item} <span className="italic">{props.item.price ? ` - $${props.item.price}` : ''}</span> {pantryItems && pantrySearch(props.item.item) && <span>👍</span>}</li>
         </StyledDiv>
     );
 };
 
-export default ListItem;
+const mapStateToProps = (state) => {
+    return ({
+        pantryItems: state.pantryItems
+    })
+};
+
+export default connect(mapStateToProps)(ListItem);
