@@ -99,7 +99,7 @@ const NewList = (props) => {
       e.preventDefault();
       if (formValues.item) {
         const newItem = {
-          item: formValues.item,
+          item: formValues.item.toLowerCase(),
           price: formValues.price,
         };
         setList([...list, newItem]);
