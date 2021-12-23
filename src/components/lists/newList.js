@@ -103,8 +103,8 @@ const NewList = (props) => {
       e.preventDefault();
       if (formValues.item) {
         const newItem = {
-          item: formValues.item.toLowerCase(),
-          price: formValues.price,
+          item: formValues.item.toLowerCase().trim(),
+          price: formValues.price
         };
         props.addItemToCurrentList(newItem);
         // setTotal(Number(total) + Number(newItem.price));

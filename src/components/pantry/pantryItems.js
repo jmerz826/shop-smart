@@ -50,7 +50,7 @@ const PantryItems = (props) => {
         e.preventDefault();
 
         if (formValues.item) {
-            const newItem = formValues.item.toLowerCase();
+            const newItem = formValues.item.toLowerCase().trim();
             props.addItemToPantry(newItem);
             setFormValues(initialFormValues);
         }
