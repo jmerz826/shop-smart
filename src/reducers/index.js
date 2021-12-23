@@ -1,4 +1,12 @@
-import { ADD_LIST_TO_LISTS, ADD_ITEM_TO_PANTRY, REMOVE_ITEM_FROM_PANTRY, REMOVE_LIST_FROM_LISTS, REMOVE_ITEM_FROM_CURRENT_LIST } from "../actions";
+import {
+    ADD_LIST_TO_LISTS,
+    ADD_ITEM_TO_PANTRY,
+    REMOVE_ITEM_FROM_PANTRY,
+    REMOVE_LIST_FROM_LISTS,
+    REMOVE_ITEM_FROM_CURRENT_LIST,
+    ADD_ITEM_TO_CURRENT_LIST,
+    CLEAR_CURRENT_LIST
+} from "../actions";
 
 const initialState = {
     previousLists: [],
@@ -54,6 +62,23 @@ const reducer = (state = initialState, action) => {
                     currentListItems: action.payload
                 });
             }; 
+        case ADD_ITEM_TO_CURRENT_LIST:
+            if (state.currentListItems) {
+                return ({
+                    ...state,
+                    currentListItems: [...state.currentListItems, action.payload]
+                });
+            } else {
+                return ({
+                    ...state,
+                    currentListItems: [action.payload]
+                });
+            };
+        case CLEAR_CURRENT_LIST:
+            return ({
+                ...state,
+               currentListItems: '' 
+            });
         default:
             return{state}
     }

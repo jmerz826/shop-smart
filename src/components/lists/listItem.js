@@ -34,7 +34,7 @@ const ListItem = (props) => {
             <li>
                 {props.item.item}
                 <span className="italic">{props.item.price ? ` - $${props.item.price}` : ''}</span>
-                {pantryItems && pantrySearch(props.item.item) && <span>👍</span>}
+                {pantryItems && pantrySearch(props.item.item) && <span> 👍</span>}
                 <button className="delete-btn">❌</button>
             </li>
         </StyledDiv>
