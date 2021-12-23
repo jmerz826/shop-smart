@@ -5,6 +5,9 @@ export const REMOVE_LIST_FROM_LISTS = 'REMOVE_LIST_FROM_LISTS';
 export const REMOVE_ITEM_FROM_CURRENT_LIST = 'REMOVE_ITEM_FROM_CURRENT_LIST';
 export const ADD_ITEM_TO_CURRENT_LIST = 'ADD_ITEM_TO_CURRENT_LIST';
 export const CLEAR_CURRENT_LIST = 'CLEAR_CURRENT_LIST';
+export const UPDATE_TOTAL = 'UPDATE_TOTAL';
+export const CLEAR_TOTAL = 'CLEAR_TOTAL';
+
 
 export const addListToLists = (list) => {
     return ({
@@ -48,3 +51,16 @@ export const clearCurrentList = () => {
         type: CLEAR_CURRENT_LIST
     });
 };
+
+export const updateTotal = (num) => {
+    return ({
+        type: UPDATE_TOTAL, payload: num
+    });
+};
+
+export const clearTotal = () => {
+    return ({
+        type: CLEAR_TOTAL
+    });
+};
+

@@ -5,13 +5,16 @@ import {
     REMOVE_LIST_FROM_LISTS,
     REMOVE_ITEM_FROM_CURRENT_LIST,
     ADD_ITEM_TO_CURRENT_LIST,
-    CLEAR_CURRENT_LIST
+    CLEAR_CURRENT_LIST,
+    UPDATE_TOTAL,
+    CLEAR_TOTAL
 } from "../actions";
 
 const initialState = {
     previousLists: [],
     pantryItems: [],
-    currentListItems: []
+    currentListItems: [],
+    listTotal: 0
 };
 
 const reducer = (state = initialState, action) => {
@@ -71,6 +74,16 @@ const reducer = (state = initialState, action) => {
             return ({
                 ...state,
                currentListItems: '' 
+            });
+        case UPDATE_TOTAL:
+            return ({
+                ...state,
+                listTotal: action.payload
+            });
+        case CLEAR_TOTAL:
+            return ({
+                ...state,
+                listTotal: 0
             });
         default:
             return{state}

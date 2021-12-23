@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { connect } from "react-redux";
-import { removeItemFromCurrentList } from '../../actions';
+import { removeItemFromCurrentList, updateTotal } from '../../actions';
 
 const StyledDiv = styled.div`
     .italic{
@@ -31,7 +31,7 @@ const StyledDiv = styled.div`
 `
 
 const ListItem = (props) => {
-    const { pantryItems, total } = props;
+    const { pantryItems } = props;
 
     const pantrySearch = (i) => {
         return pantryItems.includes(i);
@@ -39,6 +39,8 @@ const ListItem = (props) => {
 
     const handleDelete = (x) => {
         props.removeItemFromCurrentList(x);
+        console.log(Number(x.price));
+        props.updateTotal(Number(-x));
     }
 
     return (
@@ -61,4 +63,4 @@ const mapStateToProps = (state) => {
     })
 };
 
-export default connect(mapStateToProps, {removeItemFromCurrentList})(ListItem);
+export default connect(mapStateToProps, {removeItemFromCurrentList, updateTotal})(ListItem);

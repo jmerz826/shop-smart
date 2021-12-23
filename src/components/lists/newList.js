@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
-import { addListToLists, addItemToCurrentList, clearCurrentList } from '../../actions';
+import { addListToLists, addItemToCurrentList, clearCurrentList, updateTotal, clearTotal } from '../../actions';
 import CurrentList from "./currentList";
 import styled from "styled-components";
 
@@ -77,7 +77,7 @@ let idCounter = 0;
 const NewList = (props) => {
     const [formValues, setFormValues] = useState(initialFormValues);
     const { list } = props;
-    const [total, setTotal] = useState(0);
+    // const [total, setTotal] = useState(0);
 
     const modal = document.querySelector('#clear-modal');
   
@@ -92,6 +92,12 @@ const NewList = (props) => {
             [e.target.name]: e.target.value
         })
     };
+  
+  const totalAdder = (newItemPrice) => {
+    console.log(props.total);
+    const currentTotal = props.total === undefined ? Number(0) : Number(props.total);
+      return Number(currentTotal + Number(newItemPrice));
+    }
 
     const handleAdd = (e) => {
       e.preventDefault();
@@ -101,7 +107,8 @@ const NewList = (props) => {
           price: formValues.price,
         };
         props.addItemToCurrentList(newItem);
-        setTotal(Number(total) + Number(newItem.price));
+        // setTotal(Number(total) + Number(newItem.price));
+        props.updateTotal(totalAdder(newItem.price));
         setFormValues(initialFormValues);
         document.getElementById("item-input").focus();
         document.getElementById("item-input").select();
@@ -111,10 +118,10 @@ const NewList = (props) => {
     const handleSave = (e) => {
         e.preventDefault();
         if (list) {
-            const newList = [{ ...list, displayId: idGenerator(), total: total, id: Date.now() }];
+            const newList = [{ ...list, displayId: idGenerator(), total: props.total, id: Date.now() }];
             props.addListToLists(newList);
             props.clearCurrentList();
-            setTotal(0);
+            props.clearTotal();
         }
     };
 
@@ -163,7 +170,7 @@ const NewList = (props) => {
                     <button onClick={toggleModal} className='bottom-btn'>Clear List</button>
                 </div>
             </form>
-            <CurrentList list={list} total={ total}/>
+            <CurrentList list={list} total={ props.total}/>
         </StyledNewList>
   );
 };
@@ -171,8 +178,9 @@ const NewList = (props) => {
 const mapStateToProps = state => {
   return ({
     previousLists: state.previousLists,
-    list: state.currentListItems
+    list: state.currentListItems,
+    total: state.listTotal
   });
 };
 
-export default connect(mapStateToProps, {addListToLists, addItemToCurrentList, clearCurrentList})(NewList);
+export default connect(mapStateToProps, {addListToLists, addItemToCurrentList, clearCurrentList, updateTotal, clearTotal})(NewList);
