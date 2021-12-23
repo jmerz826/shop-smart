@@ -71,7 +71,7 @@ const reducer = (state = initialState, action) => {
             } else {
                 return ({
                     ...state,
-                    currentListItems: action.payload
+                    currentListItems: [action.payload]
                 });
             };
         case CLEAR_CURRENT_LIST:
