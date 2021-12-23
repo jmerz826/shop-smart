@@ -94,7 +94,6 @@ const NewList = (props) => {
     };
   
   const totalAdder = (newItemPrice) => {
-    console.log(props.total);
     const currentTotal = (props.total === undefined) ? Number(0) : Number(props.total);
       return Number(currentTotal + Number(newItemPrice));
     }

@@ -60,6 +60,10 @@ const StyledOldList = styled.div`
     text-align: center;
   }
 
+  .old-list-modal:hover{
+    cursor:default;
+  }
+
   .hidden{
       display:none;
   }
@@ -113,7 +117,7 @@ const OldList = (props) => {
         }}
       >
         <h4>List {list[0].displayId}</h4>
-        <h5>Total: ${list[0].total}</h5>
+        {list[0].total ? <h5>Total: ${list[0].total}</h5> : ''}
         <ul>
           <li>{list[0][0].item}</li>
           {list[0][1] && <li>{list[0][1]?.item}</li>}
@@ -127,13 +131,7 @@ const OldList = (props) => {
           }}>Delete</button>
         </div>
       </div>
-      <div
-        className="old-list-modal hidden"
-        id={list[0].id}
-        onClick={() => {
-          closeModal(list[0]);
-        }}
-      >
+      <div className="old-list-modal hidden" id={list[0].id}>
         <h4>List {list[0].displayId}</h4>
         <ul>
           {modalPopulated.map(el => {

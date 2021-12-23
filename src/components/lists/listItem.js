@@ -38,14 +38,12 @@ const ListItem = (props) => {
     }
 
     const totalAdder = (newItemPrice) => {
-        console.log(props.total);
         const currentTotal = (props.total === undefined) ? Number(0) : Number(props.total);
           return Number(currentTotal + Number(newItemPrice));
     }
 
     const handleDelete = (x) => {
         props.removeItemFromCurrentList(x);
-        console.log(Number(x.price));
         props.updateTotal(totalAdder(Number(-x.price)));
     }
 
