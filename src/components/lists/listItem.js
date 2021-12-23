@@ -37,10 +37,16 @@ const ListItem = (props) => {
         return pantryItems.includes(i);
     }
 
+    const totalAdder = (newItemPrice) => {
+        console.log(props.total);
+        const currentTotal = (props.total === undefined) ? Number(0) : Number(props.total);
+          return Number(currentTotal + Number(newItemPrice));
+    }
+
     const handleDelete = (x) => {
         props.removeItemFromCurrentList(x);
         console.log(Number(x.price));
-        props.updateTotal(Number(-x));
+        props.updateTotal(Number(x));
     }
 
     return (
@@ -59,7 +65,8 @@ const ListItem = (props) => {
 
 const mapStateToProps = (state) => {
     return ({
-        pantryItems: state.pantryItems
+        pantryItems: state.pantryItems,
+        total: state.listTotal
     })
 };
 

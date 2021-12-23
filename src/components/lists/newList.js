@@ -95,7 +95,7 @@ const NewList = (props) => {
   
   const totalAdder = (newItemPrice) => {
     console.log(props.total);
-    const currentTotal = props.total === undefined ? Number(0) : Number(props.total);
+    const currentTotal = (props.total === undefined) ? Number(0) : Number(props.total);
       return Number(currentTotal + Number(newItemPrice));
     }
 
@@ -133,6 +133,7 @@ const NewList = (props) => {
     const handleClear = (e) => {
         e.preventDefault();
         props.clearCurrentList();
+        props.clearTotal();
         toggleModal(e);
     }
 
