@@ -51,17 +51,10 @@ const reducer = (state = initialState, action) => {
                 previousLists: state.previousLists.filter(el => el !== action.payload)
             });
         case REMOVE_ITEM_FROM_CURRENT_LIST:
-            if (state.currentListItems) {
-                return ({
-                    ...state,
-                    currentListItems: [...state.currentListItems, action.payload]
-                })
-            } else {
-                return ({
-                    ...state,
-                    currentListItems: action.payload
-                });
-            }; 
+            return ({
+                ...state,
+                currentListItems: state.currentListItems.filter(el => el !== action.payload)
+            });
         case ADD_ITEM_TO_CURRENT_LIST:
             if (state.currentListItems) {
                 return ({

@@ -76,8 +76,7 @@ let idCounter = 0;
 
 const NewList = (props) => {
     const [formValues, setFormValues] = useState(initialFormValues);
-    // const [list, setList] = useState('');
-  const { list } = props;
+    const { list } = props;
     const [total, setTotal] = useState(0);
 
     const modal = document.querySelector('#clear-modal');

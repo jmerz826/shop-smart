@@ -25,12 +25,12 @@ const CurrentList = (props) => {
   return (
     <StyledCurrentList>
       <h3>Current List:</h3>
-      {props.list && <h4>Total: ${props.total}</h4>}
+      {props.list && (props.total !== 0) ? <h4>Total: ${props.total}</h4> : ''}
       {!props.list && <h5>No items yet, add some stuff!</h5>}
       <ul>
         {props.list &&
           props.list.map((item) => {
-            return <ListItem item={item} key={item.item} />;
+            return <ListItem item={item} key={item.item} total={props.total}/>;
           })}
       </ul>
     </StyledCurrentList>
