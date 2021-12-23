@@ -46,7 +46,7 @@ const ListItem = (props) => {
     const handleDelete = (x) => {
         props.removeItemFromCurrentList(x);
         console.log(Number(x.price));
-        props.updateTotal(Number(x));
+        props.updateTotal(totalAdder(Number(-x.price)));
     }
 
     return (
