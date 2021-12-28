@@ -7,8 +7,10 @@ import {
     ADD_ITEM_TO_CURRENT_LIST,
     CLEAR_CURRENT_LIST,
     UPDATE_TOTAL,
-    CLEAR_TOTAL
+    CLEAR_TOTAL,
+    ADD_MEAL
 } from "../actions";
+
 import { mealsData } from "../components/data/mealsData";
 
 const initialState = {
@@ -87,8 +89,13 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 listTotal: 0
             });
+        case ADD_MEAL:
+            return ({
+                ...state,
+                meals: [...state.meals, action.payload]
+            })
         default:
-            return{state}
+            return state
     }
 }
 

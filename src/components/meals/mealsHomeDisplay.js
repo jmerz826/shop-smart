@@ -34,9 +34,8 @@ const MealsHomeDisplay = (props) => {
 };
 
 const mapStateToProps = (state) => {
-    console.log(state);
     return ({
-        meals: state.state.meals
+        meals: state.meals
     });
 };
 

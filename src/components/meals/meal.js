@@ -19,7 +19,6 @@ const StyledMeal = styled.div`
 
 const Meal = (props) => {
     const { meal } = props;
-    console.log(meal.image);
     return (
         <StyledMeal>
             <img src={meal.image} alt={meal.name}/>
