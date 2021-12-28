@@ -2,7 +2,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 import styled from 'styled-components';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { fab } from '@fortawesome/free-brands-svg-icons'
 import { faLinkedin, faGithubSquare } from "@fortawesome/free-brands-svg-icons";
 
 const StyledHeader = styled.div`

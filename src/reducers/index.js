@@ -9,12 +9,14 @@ import {
     UPDATE_TOTAL,
     CLEAR_TOTAL
 } from "../actions";
+import { mealsData } from "../components/data/mealsData";
 
 const initialState = {
     previousLists: [],
     pantryItems: [],
     currentListItems: [],
-    listTotal: 0
+    listTotal: 0,
+    meals: mealsData
 };
 
 const reducer = (state = initialState, action) => {
