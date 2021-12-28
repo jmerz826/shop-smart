@@ -20,7 +20,6 @@ const StyledMealsHome = styled.div`
 
 const MealsHomeDisplay = (props) => {
     const { meals } = props;
-    console.log(meals);
     return (
         <StyledMealsHome>
             <h3>Meals:</h3>

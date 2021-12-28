@@ -12,7 +12,9 @@ const StyledMeals = styled.div`
 `
 
 const StyledMealForm = styled.form`
-
+    display:flex;
+    flex-direction: column;
+    align-items: center;
 `
 
 const initialFormValues = {
@@ -27,7 +29,16 @@ const initialFormValues = {
 class Meals extends React.Component {
     state = {
         meals: this.props.meals,
-        formValues: initialFormValues
+        formValues: initialFormValues,
+    };
+
+    componentDidUpdate(prevState) {
+        if (prevState.meals !== this.props.meals) {
+            this.setState({
+                ...this.state,
+                meals: this.props.meals
+            })
+        }
     };
 
     handleChange = (e) => {
@@ -42,14 +53,21 @@ class Meals extends React.Component {
 
     handleAddIngredient = (e) => {
         e.preventDefault();
-
-    }
+        const newIngredient = this.state.formValues.ingredient;
+        this.setState({
+            ...this.state,
+            formValues: {
+                ...this.state.formValues,
+                ingredients: [...this.state.formValues.ingredients, newIngredient],
+                ingredient: ''
+            }
+        });
+    };
 
     handleSubmit = (e) => {
         e.preventDefault();
         const newMeal = {
             name: this.state.formValues.name,
-            ingredient: this.state.formValues.ingredient,
             ingredients: this.state.formValues.ingredients,
             image: this.state.formValues.image,
             time: this.state.formValues.time,
@@ -83,6 +101,7 @@ class Meals extends React.Component {
                         onChange={this.handleChange}
                         />
                     </label>
+                    <button onClick={this.handleAddIngredient}>Add ingredient</button>
                     <label> Image URL: 
                     <input
                         name='image'
@@ -110,8 +129,17 @@ class Meals extends React.Component {
                         placeholder="(optional)"
                         />
                     </label>
-                </StyledMealForm>
+                    <button onClick={this.handleSubmit}>Add meal!</button>
+                    {this.state.formValues.ingredients && this.state.formValues.ingredients.map(i => {
+                        return (
+                            <p key={i}>{i}</p>
+                        )
+                    })}
+
+                    </StyledMealForm>
+                    
                 
+
                 <h3>My Meals:</h3>
                 <StyledMeals>
                     {this.state.meals && this.state.meals.map(meal => {
