@@ -1,9 +1,11 @@
 import React from "react";
 import styled from "styled-components";
 
-const StyledMeal = styled.div`
+const StyledHomeMeal = styled.div`
+    display:flex;
+    flex-direction: column;
     max-width: 100%;
-    width:10%;
+    width:100%;
     padding: 1%;
     background-color:#FECA70;
     img{
@@ -11,21 +13,20 @@ const StyledMeal = styled.div`
     }
     text-align: center;
     border: 2px solid black;
-
+    margin-bottom: 2%;
     :hover{
         cursor: pointer;
-    }    
+    } 
 `
 
-const Meal = (props) => {
+const MealHome = props => {
     const { meal } = props;
-    console.log(meal.image);
     return (
-        <StyledMeal>
+        <StyledHomeMeal>
             <img src={meal.image} alt={meal.name}/>
             <h4>{meal.name}</h4>
-        </StyledMeal>
+        </StyledHomeMeal>
     );
 };
 
-export default Meal;
+export default MealHome;
