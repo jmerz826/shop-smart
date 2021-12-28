@@ -64,6 +64,10 @@ const StyledOldList = styled.div`
     cursor:default;
   }
 
+  .old-list-modal button{
+    margin-top:2%;
+  }
+
   .hidden{
       display:none;
   }
@@ -131,7 +135,7 @@ const OldList = (props) => {
           }}>Delete</button>
         </div>
       </div>
-      <div className="old-list-modal hidden" id={list[0].id}>
+      <div className="old-list-modal hidden" id={list[0].id} onClick={() => closeModal(list[0])}>
         <h4>List {list[0].displayId}</h4>
         <ul>
           {modalPopulated.map(el => {
