@@ -25,7 +25,7 @@ const MealsHomeDisplay = (props) => {
             <h3>My Meals:</h3>
             {meals && meals.map(meal => {
                 return (
-                    <MealHome meal={meal} key={meal.name} />
+                    <MealHome meal={meal} key={meal.name}/>
                 );
             })}
         </StyledMealsHome>

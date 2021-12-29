@@ -30,15 +30,18 @@ const StyledHomeMeal = styled.div`
 
     a{
         text-decoration: none;
-        color: inherit;
         font-style: inherit;
+        font-size: 1.44rem;
     }
 
     .hidden{
-        /* display:none; */
+        display:none;
     }
 
     .home-meal-modal{
+        :hover{
+            cursor:default;
+        }
         border-radius: 16px;
         background-color: #feca70;
         border: 4px solid black;
@@ -48,11 +51,16 @@ const StyledHomeMeal = styled.div`
         margin-top: 6%;
         margin-right: 80%;
         padding: 1%;
-        width: 50%;
+        width: 30%;
         text-align: center;
 
         img{
             width:90%;
+        }
+        button{
+            display:block;
+            margin: auto;
+            margin-top: 2%;
         }
     }
 `
@@ -65,31 +73,40 @@ const MealHome = props => {
         const capitalizedArr = meal.ingredients.map(ing => {
             return (ing[0].toUpperCase() + ing.slice(1));
         })
-        return capitalizedArr.join(', ')
+        return (' ' + capitalizedArr.join(', '))
+    };
+
+    const toggleMealModal = (inputMeal) => {
+        const modals = document.querySelectorAll('.home-meal-modal');
+        const modalsArr = Array.from(modals);
+        const targetModal = modalsArr.find(
+            (el) => el.id === inputMeal.name
+        );
+        targetModal.classList.toggle('hidden');
     }
 
     return (
-        <StyledHomeMeal>
-            <img src={meal.image ? meal.image : defaultImage} alt={meal.name}/>
+      <StyledHomeMeal>
+        <div
+          onClick={() => {
+            toggleMealModal(meal);
+          }}
+        >
+          <img src={meal.image ? meal.image : defaultImage} alt={meal.name} />
+          <h4>{meal.name}</h4>
+        </div>
+
+        {/* normally hidden modal with meal details */}
+        <div id={meal.name} className="home-meal-modal hidden" onClick={() => toggleMealModal(meal)}>
             <h4>{meal.name}</h4>
-
-            {/* normally hidden modal with meal details */}
-            <div className="home-meal-modal hidden">
-                <h4>{meal.name}</h4>
-                <img src={meal.image ? meal.image : defaultImage} alt={meal.name} />
-                <h5>Ingredients:
-                    {/* {meal.ingredients.map(ing => {
-                    return (
-                        <li key={ing + meal.name}>{ing}</li>
-                    );
-                    })} */}
-                    {ingredientListMaker(meal)}
-                </h5>
-
-                <h5>Preparation time: <span className="bold">~{meal.time} minutes</span></h5>
-                <a href={meal.recipe} target={'_blank'} rel='noreferrer'>Recipe 👨‍🍳</a>
-            </div>
-        </StyledHomeMeal>
+            <img src={meal.image ? meal.image : defaultImage} alt={meal.name} />
+            <h5>Ingredients:{ingredientListMaker(meal)}</h5>
+            <h5>Preparation time: <span className="bold">~{meal.time} minutes</span></h5>
+            <a href={meal.recipe} target={"_blank"} rel="noreferrer">Recipe 👨‍🍳</a>
+            <button>Add meal to current list</button>    
+            <button onClick={() => toggleMealModal(meal)}>Close Window</button>
+        </div>
+      </StyledHomeMeal>
     );
 };
 
