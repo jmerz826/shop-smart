@@ -86,7 +86,7 @@ const MealHome = props => {
             (el) => el.id === inputMeal.name
         );
         targetModal.classList.toggle('hidden');
-    }
+    };
 
     return (
       <StyledHomeMeal>

@@ -10,11 +10,13 @@ const StyledMealsHome = styled.div`
     display:flex;
     flex-direction: column;
     height:75vh;
+    margin-right:1%;
+
     .meals{
         overflow: scroll;
         overflow-x: hidden;
     }
-    margin-right:1%;
+
     h3{
         margin-bottom:4%;
     }
