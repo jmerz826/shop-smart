@@ -5,12 +5,13 @@ const defaultImage = 'https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2
 
 const StyledMeal = styled.div`
     max-width: 100%;
-    width:10%;
+    width:12.5%;
     padding: 1%;
     background-color:#FECA70;
     display:flex;
     justify-content:center;
     align-items:baseline;
+    margin: 0 2% 2% 2%;
     img{
         width: 100%;
     }

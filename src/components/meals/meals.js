@@ -8,13 +8,50 @@ const StyledMeals = styled.div`
     display:flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
-    margin: 2%;
+    margin: 2% 4%;
 `
 
 const StyledMealForm = styled.form`
     display:flex;
     flex-direction: column;
-    align-items: center;
+    width: 36%;
+    align-items: left;
+    margin: auto;
+    background-color: beige;
+    margin-top: 1%;
+    border-radius: 16px;
+    padding:0.5%;
+    text-align: center;
+    box-sizing: border-box;
+
+    h5{
+        margin: 1% 0;
+        text-decoration: underline;
+    }
+
+    input{
+        display:inline-block;
+        width:60%;
+        margin: auto;
+        text-align: center;
+    }
+
+    /* Removes default arrows on number input(s) (prep time input) */
+    input[type=number]::-webkit-inner-spin-button,
+    input[type=number]::-webkit-outer-spin-button{
+        -webkit-appearance:none;
+        -moz-appearance:none;
+        appearance:none;
+        margin:0;
+    }
+    button{
+        margin: auto;
+    }
+
+    li{
+        text-transform: capitalize;
+    }
+
 `
 
 const initialFormValues = {
@@ -85,60 +122,66 @@ class Meals extends React.Component {
             <div>
                 <StyledMealForm>
                     <h3>Add a meal:</h3>
-                    <label> Meal name: 
-                    <input
-                        name='name'
-                        type='text'
-                        value={this.state.formValues.name}
-                        onChange={this.handleChange}
+
+                    <label> Meal name:</label>
+                        <input
+                            name='name'
+                            type='text'
+                            value={this.state.formValues.name}
+                            onChange={this.handleChange}
                         />
-                    </label>
-                    <label> Ingredient: 
-                    <input
-                        name='ingredient'
-                        type='text'
-                        value={this.state.formValues.ingredient}
-                        onChange={this.handleChange}
+                    
+                    
+                    <label> Ingredient:</label>
+                        <input
+                            name='ingredient'
+                            type='text'
+                            value={this.state.formValues.ingredient}
+                            onChange={this.handleChange}
                         />
-                    </label>
+                    
                     <button onClick={this.handleAddIngredient}>Add ingredient</button>
-                    <label> Image URL: 
-                    <input
-                        name='image'
-                        type='text'
-                        value={this.state.formValues.image}
-                        onChange={this.handleChange}
-                        placeholder="(optional)"
+
+                    <label> Image URL:</label> 
+                        <input
+                            name='image'
+                            type='text'
+                            value={this.state.formValues.image}
+                            onChange={this.handleChange}
+                            placeholder="(optional)"
                         />
-                    </label>
-                    <label> Preparation + cook time (approx.): 
-                    <input
-                        name='time'
-                        type='number'
-                        value={this.state.formValues.time}
-                        onChange={this.handleChange}
-                        placeholder="(optional)"
+                    
+                    
+                    <label> Preparation + cook time (approx.):</label> 
+                        <input
+                            name='time'
+                            type='number'
+                            value={this.state.formValues.time}
+                            onChange={this.handleChange}
+                            placeholder="(optional)"
                         />
-                    </label>
-                    <label> Link to recipe: 
+                    
+                    
+                    <label> Link to recipe:</label> 
                     <input
                         name='recipe'
                         type='text'
                         value={this.state.formValues.recipe}
                         onChange={this.handleChange}
                         placeholder="(optional)"
-                        />
-                    </label>
+                    />
+                                        
                     <button onClick={this.handleSubmit}>Add meal!</button>
-                    {this.state.formValues.ingredients && this.state.formValues.ingredients.map(i => {
-                        return (
-                            <p key={i}>{i}</p>
-                        )
-                    })}
 
+                    <div>
+                        {this.state.formValues.ingredients.length >= 1 ? <h5>Added Ingredients:</h5> : ''}
+                        {this.state.formValues.ingredients && this.state.formValues.ingredients.map(i => {
+                            return (
+                                <li key={i}>{i}</li>
+                            );
+                        })}
+                    </div>
                     </StyledMealForm>
-                    
-                
 
                 <h3>My Meals:</h3>
                 <StyledMeals>
