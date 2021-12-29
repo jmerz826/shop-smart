@@ -8,7 +8,8 @@ import {
     CLEAR_CURRENT_LIST,
     UPDATE_TOTAL,
     CLEAR_TOTAL,
-    ADD_MEAL
+    ADD_MEAL,
+    DELETE_MEAL
 } from "../actions";
 
 import { mealsData } from "../components/data/mealsData";
@@ -93,6 +94,11 @@ const reducer = (state = initialState, action) => {
             return ({
                 ...state,
                 meals: [...state.meals, action.payload]
+            });
+        case DELETE_MEAL: 
+            return ({
+                ...state,
+                meals: state.meals.filter(meal => meal !== action.payload)
             })
         default:
             return state

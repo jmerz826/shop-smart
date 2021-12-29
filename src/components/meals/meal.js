@@ -1,5 +1,7 @@
 import React from "react";
 import styled from "styled-components";
+import { connect } from 'react-redux';
+import { deleteMeal } from "../../actions";
 
 const defaultImage = 'https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fwww.clker.com%2Fcliparts%2Fz%2FQ%2FY%2FG%2Fb%2Fg%2Fsandwich-half-md.png&f=1&nofb=1';
 
@@ -87,6 +89,10 @@ const Meal = (props) => {
         targetModal.classList.toggle('hidden');
     };
 
+    const handleDelete = (meal) => {
+        props.deleteMeal(meal);
+    }
+
     return (
         <StyledMeal>
             <div onClick={() => toggleMealModal(meal)}>
@@ -101,7 +107,7 @@ const Meal = (props) => {
                 {meal.time && <h5>Preparation time: <span className="bold">~{meal.time} minutes</span></h5>}
                 {meal.recipe && <a href={meal.recipe} target={"_blank"} rel="noreferrer">Recipe 👨‍🍳</a>}
                 <div className="buttons">
-                    <button className="delete-btn">Delete Meal</button>
+                    <button className="delete-btn" onClick={() => handleDelete(meal)}>Delete Meal</button>
                     <button onClick={() => toggleMealModal(meal)}>Close Window</button>
                 </div>
             </div>
@@ -109,4 +115,10 @@ const Meal = (props) => {
     );
 };
 
-export default Meal;
+const mapStateToProps = state => {
+    return ({
+        state
+    });
+};
+
+export default connect(mapStateToProps, {deleteMeal})(Meal);
