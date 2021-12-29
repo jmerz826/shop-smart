@@ -52,6 +52,19 @@ const StyledMeal = styled.div`
         img, h5, a{
             margin-top: 1%;
         }
+        .buttons{
+            display:flex;
+            width:50%;
+            margin:auto;
+            margin-top: 1%;
+
+            button{
+                font-size: 1rem;
+            }
+        }
+        .delete-btn{
+            background-color:#FF2400;
+        }
     }
 `
 
@@ -85,9 +98,12 @@ const Meal = (props) => {
                 <h4>{meal.name}</h4>
                 <img src={meal.image ? meal.image : defaultImage} alt={meal.name} />
                 <h5>Ingredients:{ingredientListMaker(meal)}</h5>
-                <h5>Preparation time: <span className="bold">~{meal.time} minutes</span></h5>
-                <a href={meal.recipe} target={"_blank"} rel="noreferrer">Recipe 👨‍🍳</a>
-                <button onClick={() => toggleMealModal(meal)}>Close Window</button>
+                {meal.time && <h5>Preparation time: <span className="bold">~{meal.time} minutes</span></h5>}
+                {meal.recipe && <a href={meal.recipe} target={"_blank"} rel="noreferrer">Recipe 👨‍🍳</a>}
+                <div className="buttons">
+                    <button className="delete-btn">Delete Meal</button>
+                    <button onClick={() => toggleMealModal(meal)}>Close Window</button>
+                </div>
             </div>
         </StyledMeal>
     );

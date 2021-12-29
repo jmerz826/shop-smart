@@ -5,10 +5,22 @@ import styled from "styled-components";
 import { addMeal } from "../../actions";
 
 const StyledMeals = styled.div`
-    display:flex;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
-    margin: 2% 4%;
+    margin:2% 4%;
+    background-color:yellow;
+    border-radius: 16px;
+    border: 2px solid black;
+    padding: 0.5%;
+
+    .meals{
+        display:flex;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+        margin: 2% 4%;
+    }
+
+    h3{
+        text-align: center;
+    }
 `
 
 const StyledMealForm = styled.form`
@@ -34,6 +46,7 @@ const StyledMealForm = styled.form`
         width:60%;
         margin: auto;
         text-align: center;
+        margin-bottom: 1%;
     }
 
     /* Removes default arrows on number input(s) (prep time input) */
@@ -46,6 +59,7 @@ const StyledMealForm = styled.form`
     }
     button{
         margin: auto;
+        margin-bottom:1%;
     }
 
     li{
@@ -131,7 +145,6 @@ class Meals extends React.Component {
                             onChange={this.handleChange}
                         />
                     
-                    
                     <label> Ingredient:</label>
                         <input
                             name='ingredient'
@@ -141,16 +154,6 @@ class Meals extends React.Component {
                         />
                     
                     <button onClick={this.handleAddIngredient}>Add ingredient</button>
-
-                    <label> Image URL:</label> 
-                        <input
-                            name='image'
-                            type='text'
-                            value={this.state.formValues.image}
-                            onChange={this.handleChange}
-                            placeholder="(optional)"
-                        />
-                    
                     
                     <label> Preparation + cook time (approx.):</label> 
                         <input
@@ -170,6 +173,15 @@ class Meals extends React.Component {
                         onChange={this.handleChange}
                         placeholder="(optional)"
                     />
+
+                    <label> Image URL:</label> 
+                        <input
+                            name='image'
+                            type='text'
+                            value={this.state.formValues.image}
+                            onChange={this.handleChange}
+                            placeholder="(optional)"
+                        />
                                         
                     <button onClick={this.handleSubmit}>Add meal!</button>
 
@@ -183,13 +195,16 @@ class Meals extends React.Component {
                     </div>
                     </StyledMealForm>
 
-                <h3>My Meals:</h3>
+                
                 <StyledMeals>
-                    {this.state.meals && this.state.meals.map(meal => {
-                        return (
-                            <Meal meal={meal} key={meal.name}/>
-                        )
-                    })}
+                    <h3>My Meals:</h3>
+                    <div className="meals">
+                        {this.state.meals && this.state.meals.map(meal => {
+                            return (
+                                <Meal meal={meal} key={meal.name}/>
+                            )
+                        })}
+                    </div>
                 </StyledMeals>
                 
             </div>
