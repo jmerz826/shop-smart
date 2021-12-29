@@ -1,7 +1,7 @@
 export const mealsData = [
     {
         name: 'Chicken Parmesan',
-        ingredients: ['chicken', 'salt', 'flour', 'eggs', 'bread crumbs', 'parmesan cheese', 'parsley', 'marinara sauce', 'mozzarella cheese', 'basil', 'parsley'],
+        ingredients: ['chicken', 'salt', 'flour', 'eggs', 'bread crumbs', 'parmesan cheese', 'parsley', 'marinara sauce', 'mozzarella cheese', 'basil'],
         image: 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.askchefdennis.com%2Fwp-content%2Fuploads%2F2012%2F04%2FChicken-Parm-2.jpg&f=1&nofb=1',
         time: 25,
         recipe: 'https://wonkywonderful.com/easy-chicken-parm-recipe/?utm_campaign=yummly&utm_medium=yummly&utm_source=yummly'

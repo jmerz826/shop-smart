@@ -22,7 +22,7 @@ const MealsHomeDisplay = (props) => {
     const { meals } = props;
     return (
         <StyledMealsHome>
-            <h3>Meals:</h3>
+            <h3>My Meals:</h3>
             {meals && meals.map(meal => {
                 return (
                     <MealHome meal={meal} key={meal.name} />

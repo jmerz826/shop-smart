@@ -11,6 +11,7 @@ const StyledHomeMeal = styled.div`
     width:100%;
     padding: 1%;
     background-color:#FECA70;
+
     img{
         width: 90%;
         margin-top:1%;
@@ -18,17 +19,76 @@ const StyledHomeMeal = styled.div`
     text-align: center;
     border: 2px solid black;
     margin-bottom: 2%;
+
     :hover{
         cursor: pointer;
     } 
+
+    .bold{
+        font-weight: bold;
+    }
+
+    a{
+        text-decoration: none;
+        color: inherit;
+        font-style: inherit;
+    }
+
+    .hidden{
+        /* display:none; */
+    }
+
+    .home-meal-modal{
+        border-radius: 16px;
+        background-color: #feca70;
+        border: 4px solid black;
+        position: absolute;
+        z-index: 1;
+        top: 0;
+        margin-top: 6%;
+        margin-right: 80%;
+        padding: 1%;
+        width: 50%;
+        text-align: center;
+
+        img{
+            width:90%;
+        }
+    }
 `
 
 const MealHome = props => {
     const { meal } = props;
+    console.log(meal);
+
+    const ingredientListMaker = (meal) => {
+        const capitalizedArr = meal.ingredients.map(ing => {
+            return (ing[0].toUpperCase() + ing.slice(1));
+        })
+        return capitalizedArr.join(', ')
+    }
+
     return (
         <StyledHomeMeal>
             <img src={meal.image ? meal.image : defaultImage} alt={meal.name}/>
             <h4>{meal.name}</h4>
+
+            {/* normally hidden modal with meal details */}
+            <div className="home-meal-modal hidden">
+                <h4>{meal.name}</h4>
+                <img src={meal.image ? meal.image : defaultImage} alt={meal.name} />
+                <h5>Ingredients:
+                    {/* {meal.ingredients.map(ing => {
+                    return (
+                        <li key={ing + meal.name}>{ing}</li>
+                    );
+                    })} */}
+                    {ingredientListMaker(meal)}
+                </h5>
+
+                <h5>Preparation time: <span className="bold">~{meal.time} minutes</span></h5>
+                <a href={meal.recipe} target={'_blank'} rel='noreferrer'>Recipe 👨‍🍳</a>
+            </div>
         </StyledHomeMeal>
     );
 };
