@@ -115,8 +115,9 @@ const NewList = (props) => {
     };
 
     const handleSave = (e) => {
-        e.preventDefault();
-        if (list) {
+      e.preventDefault();
+      console.log(list);
+        if (list.length >= 1) {
             const newList = [{ ...list, displayId: idGenerator(), total: props.total, id: Date.now() }];
             props.addListToLists(newList);
             props.clearCurrentList();

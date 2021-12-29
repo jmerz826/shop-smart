@@ -62,6 +62,9 @@ const StyledHomeMeal = styled.div`
             margin: auto;
             margin-top: 2%;
         }
+        img, h5, a{
+            margin-top: 1%;
+        }
     }
 `
 
@@ -97,7 +100,7 @@ const MealHome = props => {
         </div>
 
         {/* normally hidden modal with meal details */}
-        <div id={meal.name} className="home-meal-modal hidden" onClick={() => toggleMealModal(meal)}>
+        <div id={meal.name} className="home-meal-modal hidden">
             <h4>{meal.name}</h4>
             <img src={meal.image ? meal.image : defaultImage} alt={meal.name} />
             <h5>Ingredients:{ingredientListMaker(meal)}</h5>

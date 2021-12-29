@@ -10,8 +10,10 @@ const StyledMealsHome = styled.div`
     display:flex;
     flex-direction: column;
     height:75vh;
-    overflow: scroll;
-    overflow-x: hidden;
+    .meals{
+        overflow: scroll;
+        overflow-x: hidden;
+    }
     margin-right:1%;
     h3{
         margin-bottom:4%;
@@ -23,11 +25,13 @@ const MealsHomeDisplay = (props) => {
     return (
         <StyledMealsHome>
             <h3>My Meals:</h3>
-            {meals && meals.map(meal => {
-                return (
-                    <MealHome meal={meal} key={meal.name}/>
-                );
-            })}
+            <div className="meals">
+                {meals && meals.map(meal => {
+                    return (
+                        <MealHome meal={meal} key={meal.name}/>
+                    );
+                })}
+            </div>
         </StyledMealsHome>
     );
 };
