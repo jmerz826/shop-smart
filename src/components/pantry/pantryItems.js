@@ -29,6 +29,13 @@ const StyledPantry = styled.div`
         text-align:left;
         margin:0 auto;
         text-transform: capitalize;
+        background-color: beige;
+        width: 40%;
+        border-radius: 16px;
+        padding: 2%;
+        h5{
+          text-align: center;
+        }
     }
 `
 
@@ -47,8 +54,8 @@ const PantryItems = (props) => {
     };
 
     const handleSubmit = e => {
-        e.preventDefault();
-
+      e.preventDefault();
+      
         if (formValues.item) {
             const newItem = formValues.item.toLowerCase().trim();
             props.addItemToPantry(newItem);
@@ -78,11 +85,11 @@ const PantryItems = (props) => {
           <div className="pantry-inventory">
             <h3>My Pantry</h3>
             <ul>
-              {props.pantryItems
+              {props.pantryItems.length >= 1
                 ? props.pantryItems.map((item) => {
                     return <PantryItem item={item} key={item} />;
                   })
-                : "nothing in pantry yet!"}
+                : <h5>Your Pantry is empty!</h5>}
             </ul>
           </div>
         </div>
@@ -91,9 +98,9 @@ const PantryItems = (props) => {
 };
 
 const mapStateToProps = state => {
-    const { pantryItems } = state;
-
-    return { pantryItems };
-}
+  return ({
+    pantryItems: state.pantryItems
+  });
+};
 
 export default connect(mapStateToProps, {addItemToPantry})(PantryItems);
