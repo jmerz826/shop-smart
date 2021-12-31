@@ -9,7 +9,8 @@ import {
     UPDATE_TOTAL,
     CLEAR_TOTAL,
     ADD_MEAL,
-    DELETE_MEAL
+    DELETE_MEAL,
+    POPULATE_CURRENT_LIST
 } from "../actions";
 
 import { mealsData } from "../components/data/mealsData";
@@ -99,6 +100,12 @@ const reducer = (state = initialState, action) => {
             return ({
                 ...state,
                 meals: state.meals.filter(meal => meal !== action.payload)
+            });
+        case POPULATE_CURRENT_LIST:
+            console.log(action.payload.ingredients);
+            return ({
+                ...state,
+                currentListItems: [...state.currentListItems, action.payload.ingredients]
             })
         default:
             return state

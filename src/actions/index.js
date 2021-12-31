@@ -9,6 +9,7 @@ export const UPDATE_TOTAL = 'UPDATE_TOTAL';
 export const CLEAR_TOTAL = 'CLEAR_TOTAL';
 export const ADD_MEAL = 'ADD_MEAL';
 export const DELETE_MEAL = 'DELETE_MEAL';
+export const POPULATE_CURRENT_LIST = 'POPULATE_CURRENT_LIST';
 
 
 export const addListToLists = (list) => {
@@ -75,5 +76,11 @@ export const addMeal = (meal) => {
 export const deleteMeal = (meal) => {
     return ({
         type: DELETE_MEAL, payload: meal
+    });
+};
+
+export const populateCurrentList = (meal) => {
+    return ({
+        type: POPULATE_CURRENT_LIST, payload: meal
     });
 };

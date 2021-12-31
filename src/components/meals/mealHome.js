@@ -1,5 +1,7 @@
 import React from "react";
 import styled from "styled-components";
+import { connect } from "react-redux";
+import { populateCurrentList } from "../../actions";
 
 const defaultImage = 'https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fwww.clker.com%2Fcliparts%2Fz%2FQ%2FY%2FG%2Fb%2Fg%2Fsandwich-half-md.png&f=1&nofb=1';
 
@@ -70,7 +72,6 @@ const StyledHomeMeal = styled.div`
 
 const MealHome = props => {
     const { meal } = props;
-    console.log(meal);
 
     const ingredientListMaker = (meal) => {
         const capitalizedArr = meal.ingredients.map(ing => {
@@ -106,11 +107,17 @@ const MealHome = props => {
             <h5>Ingredients:{ingredientListMaker(meal)}</h5>
             <h5>Preparation time: <span className="bold">~{meal.time} minutes</span></h5>
             <a href={meal.recipe} target={"_blank"} rel="noreferrer">Recipe 👨‍🍳</a>
-            <button>Add meal to current list</button>    
+                <button onClick={() => props.populateCurrentList(meal) }>Add meal to current list</button>    
             <button onClick={() => toggleMealModal(meal)}>Close Window</button>
         </div>
       </StyledHomeMeal>
     );
 };
 
-export default MealHome;
+const mapStateToProps = state => {
+    return ({
+        state
+    })
+}
+
+export default connect(mapStateToProps, {populateCurrentList})(MealHome);

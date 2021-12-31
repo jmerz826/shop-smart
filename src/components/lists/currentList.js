@@ -1,6 +1,7 @@
 import React from "react";
 import ListItem from "./listItem";
 import styled from "styled-components";
+import { connect } from "react-redux";
 
 const StyledCurrentList = styled.div`
     text-align:center;
@@ -21,20 +22,39 @@ const StyledCurrentList = styled.div`
     }
 `;
 
-const CurrentList = (props) => {
-  return (
-    <StyledCurrentList>
-      <h3>Current List:</h3>
-      {props.list && (props.total !== 0) ? <h4>Total: ${props.total}</h4> : ''}
-      {!props.list && <h5>No items yet, add some stuff!</h5>}
-      <ul>
-        {props.list &&
-          props.list.map((item) => {
-            return <ListItem item={item} key={item.item} total={props.total}/>;
-          })}
-      </ul>
-    </StyledCurrentList>
-  );
-};
+class CurrentList extends React.Component{
+  state = {
+    
+  }
 
-export default CurrentList;
+  componentDidUpdate(prevProps) {
+    if (prevProps.currentListItems !== this.props.currentListItems) {
+      
+    }
+  }
+
+  render() {
+    return (
+      <StyledCurrentList>
+        <h3>Current List:</h3>
+        {this.props.list && (this.props.total !== 0) ? <h4>Total: ${this.props.total}</h4> : ''}
+        {!this.props.list && <h5>No items yet, add some stuff!</h5>}
+        <ul>
+          {this.props.list &&
+            this.props.list.map((item) => {
+              return <ListItem item={item} key={item.item} total={this.props.total}/>;
+            })}
+        </ul>
+      </StyledCurrentList>
+    );
+  }
+}
+
+const mapStateToProps = state => {
+  return ({
+    currentListItems: state.currentListItems,
+    total: state.listTotal
+  })
+}
+
+export default connect(mapStateToProps)(CurrentList);
