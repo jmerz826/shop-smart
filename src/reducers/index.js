@@ -103,9 +103,18 @@ const reducer = (state = initialState, action) => {
             });
         case POPULATE_CURRENT_LIST:
             console.log(action.payload.ingredients);
+            const ingredientsToAdd = [];
+            action.payload.ingredients.forEach(ing => {
+                if (!state.currentListItems.find(i => i.item === ing)) {
+                    ingredientsToAdd.push(ing);
+                };    
+            });
+
+            console.log(ingredientsToAdd);
+
             return ({
                 ...state,
-                currentListItems: [...state.currentListItems, action.payload.ingredients]
+                currentListItems: [...state.currentListItems, ...ingredientsToAdd]
             })
         default:
             return state
