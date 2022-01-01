@@ -106,7 +106,6 @@ const NewList = (props) => {
           price: formValues.price
         };
         props.addItemToCurrentList(newItem);
-        // setTotal(Number(total) + Number(newItem.price));
         props.updateTotal(totalAdder(newItem.price));
         setFormValues(initialFormValues);
         document.getElementById("item-input").focus();

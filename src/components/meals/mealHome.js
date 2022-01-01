@@ -107,7 +107,10 @@ const MealHome = props => {
             <h5>Ingredients:{ingredientListMaker(meal)}</h5>
             <h5>Preparation time: <span className="bold">~{meal.time} minutes</span></h5>
             <a href={meal.recipe} target={"_blank"} rel="noreferrer">Recipe 👨‍🍳</a>
-                <button onClick={() => props.populateCurrentList(meal) }>Add meal to current list</button>    
+                <button onClick={() => {
+                    props.populateCurrentList(meal);
+                    toggleMealModal(meal);
+                }}>Add meal to current list</button>    
             <button onClick={() => toggleMealModal(meal)}>Close Window</button>
         </div>
       </StyledHomeMeal>

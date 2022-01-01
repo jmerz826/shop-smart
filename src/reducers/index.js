@@ -79,7 +79,7 @@ const reducer = (state = initialState, action) => {
         case CLEAR_CURRENT_LIST:
             return ({
                 ...state,
-               currentListItems: '' 
+               currentListItems: [] 
             });
         case UPDATE_TOTAL:
             return ({
