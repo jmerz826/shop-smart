@@ -102,16 +102,20 @@ const reducer = (state = initialState, action) => {
                 meals: state.meals.filter(meal => meal !== action.payload)
             });
         case POPULATE_CURRENT_LIST:
-            console.log(action.payload.ingredients);
             const ingredientsToAdd = [];
-            action.payload.ingredients.forEach(ing => {
-                if (!state.currentListItems.find(i => i.item === ing)) {
-                    ingredientsToAdd.push(ing);
-                };    
-            });
-
-            console.log(ingredientsToAdd);
-
+            if (action.payload.ingredients) {
+                action.payload.ingredients.forEach(ing => {
+                    if (!state.currentListItems.find(i => i.item === ing)) {
+                        ingredientsToAdd.push({ item: ing, price: '' });
+                    };
+                });
+            } else {
+                action.payload.forEach(ing => {
+                    if (!state?.currentListItems || !state.currentListItems.find(i => i.item === ing)) {
+                        ingredientsToAdd.push({ item: ing, price: '' });
+                    };
+                });
+            }
             return ({
                 ...state,
                 currentListItems: [...state.currentListItems, ...ingredientsToAdd]

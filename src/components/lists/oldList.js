@@ -1,7 +1,7 @@
 import React from "react";
 import styled from 'styled-components';
 import { connect } from "react-redux";
-import { removeListFromLists } from "../../actions";
+import { removeListFromLists, populateCurrentList } from "../../actions";
 import ModalListItem from "./modalListItem";
 
 const StyledOldList = styled.div`
@@ -116,8 +116,11 @@ const OldList = (props) => {
   return (
     <StyledOldList>
       <div
-        onClick={() => {
-          expandOldList(list[0]);
+        onClick={(e) => {
+          console.log(e.target.id);
+          if (e.target.id !== 'set-to-current') {
+            expandOldList(list[0]);
+          }
         }}
       >
         <h4>List {list[0].displayId}</h4>
@@ -129,12 +132,16 @@ const OldList = (props) => {
           {list[0][3] ? <li>...</li> : ""}
         </ul>
         <div className="btns">
-          <button className="reveal-on-hover">Set to Current</button>
+          <button id='set-to-current' className="reveal-on-hover" onClick={() => {
+            props.populateCurrentList(populateModal(list[0]));
+          }
+          }>Set to Current</button>
           <button className="reveal-on-hover delete" onClick={() => {
             handleDelete(list);
           }}>Delete</button>
         </div>
       </div>
+
       <div className="old-list-modal hidden" id={list[0].id} onClick={() => closeModal(list[0])}>
         <h4>List {list[0].displayId}</h4>
         <ul>
@@ -162,4 +169,4 @@ const mapStateToProps = state => {
   })
 }
 
-export default connect(mapStateToProps, {removeListFromLists})(OldList);
+export default connect(mapStateToProps, {removeListFromLists, populateCurrentList})(OldList);

@@ -2,7 +2,7 @@ import React from 'react';
 
 const ModalListItem = (props) => {
     return (
-        <li>{props.item}</li>
+        <li>{props.item} {}</li>
     );
 };
 
