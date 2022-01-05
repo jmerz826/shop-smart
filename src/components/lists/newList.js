@@ -13,7 +13,6 @@ const StyledNewList = styled.div`
 
   form {
     margin-top: 1%;
-    width: 60%;
   }
 
   form label,

@@ -104,31 +104,40 @@ class Meals extends React.Component {
 
     handleAddIngredient = (e) => {
         e.preventDefault();
-        const newIngredient = this.state.formValues.ingredient;
-        this.setState({
-            ...this.state,
-            formValues: {
-                ...this.state.formValues,
-                ingredients: [...this.state.formValues.ingredients, newIngredient],
-                ingredient: ''
-            }
-        });
+
+        if (this.state.formValues.ingredient) {
+            const newIngredient = this.state.formValues.ingredient;
+            this.setState({
+                ...this.state,
+                formValues: {
+                    ...this.state.formValues,
+                    ingredients: [...this.state.formValues.ingredients, newIngredient],
+                    ingredient: ''
+                }
+            }); 
+        }
+        
     };
 
     handleSubmit = (e) => {
         e.preventDefault();
-        const newMeal = {
-            name: this.state.formValues.name,
-            ingredients: this.state.formValues.ingredients,
-            image: this.state.formValues.image,
-            time: this.state.formValues.time,
-            recipe: this.state.formValues.recipe
-        };
-        this.props.addMeal(newMeal);
-        this.setState({
-            ...this.state,
-            formValues: initialFormValues
-        });
+        if (this.state.formValues.name && this.state.formValues.ingredients.length >= 1) {
+            const newMeal = {
+                name: this.state.formValues.name,
+                ingredients: this.state.formValues.ingredients,
+                image: this.state.formValues.image,
+                time: this.state.formValues.time,
+                recipe: this.state.formValues.recipe
+            };
+            this.props.addMeal(newMeal);
+            this.setState({
+                ...this.state,
+                formValues: initialFormValues
+            });
+        } else {
+            alert('Meal name and at least 1 ingredient required!');
+        }
+        
     }
 
     render() {
