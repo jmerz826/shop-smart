@@ -125,7 +125,7 @@ const NewList = (props) => {
 
     const toggleModal = (e) => {
         e.preventDefault();
-        modal.classList.toggle('hidden');
+        modal?.classList.toggle('hidden');
     }
 
     const handleClear = (e) => {

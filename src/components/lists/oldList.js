@@ -102,8 +102,8 @@ const OldList = (props) => {
 
   const populateModal = () => {
     const arr = [];
-    for (const [key] in list[0]) {
-      arr.push(list[0][key]?.item)
+    for (const key in list[0]) {
+      arr.push(list[0][key]?.item);
     };
     for (let i = 0; i < 3; i++){
       arr.pop();
