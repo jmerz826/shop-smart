@@ -15,6 +15,9 @@ const StyledMealsHome = styled.div`
     .meals{
         overflow: scroll;
         overflow-x: hidden;
+        background-color:#FECA70;
+        padding:5%;
+        border: 3px solid black;
     }
 
     h3{

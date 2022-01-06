@@ -20,6 +20,10 @@ const StyledMeal = styled.div`
     text-align: center;
     border: 2px solid black;
 
+    #card-title{
+        text-transform: capitalize;
+    }
+
     :hover{
         cursor: pointer;
     }    
@@ -97,7 +101,7 @@ const Meal = (props) => {
         <StyledMeal>
             <div onClick={() => toggleMealModal(meal)}>
                 <img src={meal.image ? meal.image : defaultImage} alt={meal.name}/>
-                <h4>{meal.name}</h4>
+                <h4 id='card-title'>{meal.name}</h4>
             </div>
 
             <div id={meal.name} className="meal-modal hidden">

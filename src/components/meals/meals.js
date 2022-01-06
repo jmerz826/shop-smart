@@ -6,7 +6,7 @@ import { addMeal } from "../../actions";
 
 const StyledMeals = styled.div`
     margin:2% 4%;
-    background-color:yellow;
+    background-color:rgba(255,255,0,0.92);
     border-radius: 16px;
     border: 2px solid black;
     padding: 0.5%;
@@ -32,6 +32,7 @@ const StyledMealForm = styled.form`
     background-color: beige;
     margin-top: 1%;
     border-radius: 16px;
+    border: 2px solid black;
     padding:0.5%;
     text-align: center;
     box-sizing: border-box;
@@ -57,13 +58,40 @@ const StyledMealForm = styled.form`
         appearance:none;
         margin:0;
     }
-    button{
+    .form-btn{
         margin: auto;
         margin-bottom:1%;
+        background-color: #4AA3FC;
+        border: 1px solid black;
+        border-radius: 8px;
+        padding:1%;
+        font-weight: bold;
+        :hover{
+            background-color: limegreen;
+            cursor:pointer;
+        }
+    }
+
+    .delete-btn{
+        background-color:transparent;
+        visibility:hidden;
+        border:none;
+        :hover{
+            background-color:transparent;
+            cursor:pointer;
+            -webkit-transform: scale(1.2);
+            -ms-transform: scale(1.2);
+            transform: scale(1.2);
+        }
     }
 
     li{
         text-transform: capitalize;
+        :hover{
+            .delete-btn{
+                visibility:visible;
+            }
+        }
     }
 
 `
@@ -119,6 +147,19 @@ class Meals extends React.Component {
         
     };
 
+    handleDeleteIngredient = (ingredient) => {
+        // debugger;
+        this.setState({
+            ...this.state,
+            formValues: {
+                ...this.state.formValues,
+                ingredients: this.state.formValues.ingredients.filter(ing => 
+                    ing !== ingredient
+                )
+            }
+        })
+    }
+
     handleSubmit = (e) => {
         e.preventDefault();
         if (this.state.formValues.name && this.state.formValues.ingredients.length >= 1) {
@@ -135,7 +176,7 @@ class Meals extends React.Component {
                 formValues: initialFormValues
             });
         } else {
-            alert('Meal name and at least 1 ingredient required!');
+            alert('Meal name and at least 1 added ingredient required!');
         }
         
     }
@@ -162,7 +203,7 @@ class Meals extends React.Component {
                             onChange={this.handleChange}
                         />
                     
-                    <button onClick={this.handleAddIngredient}>Add ingredient</button>
+                    <button className="form-btn" onClick={this.handleAddIngredient}>Add ingredient</button>
                     
                     <label> Preparation + cook time (approx.):</label> 
                         <input
@@ -192,13 +233,13 @@ class Meals extends React.Component {
                             placeholder="(optional)"
                         />
                                         
-                    <button onClick={this.handleSubmit}>Add meal!</button>
+                    <button className="form-btn" onClick={this.handleSubmit}>ADD MEAL!</button>
 
                     <div>
                         {this.state.formValues.ingredients.length >= 1 ? <h5>Added Ingredients:</h5> : ''}
-                        {this.state.formValues.ingredients && this.state.formValues.ingredients.map(i => {
+                        {this.state.formValues.ingredients && this.state.formValues.ingredients.map(ing => {
                             return (
-                                <li key={i}>{i}</li>
+                                <li key={ing}>{ing}<button className="delete-btn" onClick={() => this.handleDeleteIngredient(ing)}>❌</button></li>
                             );
                         })}
                     </div>

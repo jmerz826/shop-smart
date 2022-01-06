@@ -23,16 +23,6 @@ const StyledCurrentList = styled.div`
 `;
 
 class CurrentList extends React.Component{
-  state = {
-    
-  }
-
-  componentDidUpdate(prevProps) {
-    if (prevProps.currentListItems !== this.props.currentListItems) {
-      
-    }
-  }
-
   render() {
     return (
       <StyledCurrentList>

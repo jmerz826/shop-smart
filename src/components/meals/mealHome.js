@@ -12,7 +12,7 @@ const StyledHomeMeal = styled.div`
     max-width: 100%;
     width:100%;
     padding: 1%;
-    background-color:#FECA70;
+    background-color:beige;
 
     img{
         width: 90%;
@@ -20,7 +20,7 @@ const StyledHomeMeal = styled.div`
     }
     text-align: center;
     border: 2px solid black;
-    margin-bottom: 2%;
+    margin-bottom: 5%;
 
     :hover{
         cursor: pointer;

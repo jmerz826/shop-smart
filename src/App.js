@@ -26,7 +26,7 @@ function App() {
           <PantryItems />
         </Route>
       </Switch>
-      <Footer />
+      {/* <Footer /> */}
     </Router>
   );
 }
