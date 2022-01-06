@@ -4,7 +4,7 @@ import NewList from "./components/lists/newList";
 import Meals from "./components/meals/meals";
 import PantryItems from "./components/pantry/pantryItems";
 import OldLists from "./components/lists/oldLists";
-import Footer from "./components/footer";
+// import Footer from "./components/footer";
 import MealsHomeDisplay from "./components/meals/mealsHomeDisplay";
 
 function App() {

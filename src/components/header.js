@@ -66,7 +66,7 @@ const Header = (props) => {
             <nav>
                 <Link to='/'>My Lists</Link>
                 <Link to='/meals'>My Meals</Link>
-                <Link to='/pantry'>My Pantry</Link>
+                <Link to='/pantry'>My Pantry 🚪</Link>
                 {/* <Link to='/calendar'>My Calendar</Link>
                 <Link to='/shop'>Shop!</Link> */}
             </nav>

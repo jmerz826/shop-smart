@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import styled from 'styled-components';
 import { connect } from "react-redux";
 import { removeListFromLists, populateCurrentList } from "../../actions";
@@ -76,6 +76,8 @@ const StyledOldList = styled.div`
 const OldList = (props) => {
   const { list } = props;
 
+  const [editingOldList, setEditingOldList] = useState(false);
+
   const expandOldList = (list) => {
     const modals = document.querySelectorAll(".old-list-modal");
     const modalsArray = Array.from(modals);
@@ -117,13 +119,13 @@ const OldList = (props) => {
     <StyledOldList>
       <div
         onClick={(e) => {
-          console.log(e.target.id);
-          if (e.target.id !== 'set-to-current') {
+          if (e.target.id !== 'add-to-current-card') {
             expandOldList(list[0]);
+            console.log(list[0]);
           }
         }}
       >
-        <h4>List {list[0].displayId}</h4>
+        <h4>List {list[0].displayId} {!editingOldList && <span className="edit-old-list">⚙️</span>}</h4>
         {list[0].total ? <h5>Total: ${list[0].total}</h5> : ''}
         <ul>
           <li>{list[0][0].item}</li>
@@ -132,10 +134,10 @@ const OldList = (props) => {
           {list[0][3] ? <li>...</li> : ""}
         </ul>
         <div className="btns">
-          <button id='set-to-current' className="reveal-on-hover" onClick={() => {
-            props.populateCurrentList(populateModal(list[0]));
+          <button id='add-to-current-card' className="reveal-on-hover" onClick={() => {
+            props.populateCurrentList(populateModal());
           }
-          }>Set to Current</button>
+          }>Add to Current List</button>
           <button className="reveal-on-hover delete" onClick={() => {
             handleDelete(list);
           }}>Delete</button>
@@ -151,6 +153,11 @@ const OldList = (props) => {
             );
           })}          
         </ul>
+        <button onClick={() => {
+            props.populateCurrentList(populateModal());
+          }
+          }>Add to Current List
+        </button>
         <button
           onClick={() => {
             closeModal(list[0]);
