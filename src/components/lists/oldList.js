@@ -10,7 +10,7 @@ const StyledOldList = styled.div`
   padding-top: 4%;
   background-color: beige;
   h4,
-  h5 {
+  h5, h6 {
     text-align: center;
   }
   ul {
@@ -71,12 +71,17 @@ const StyledOldList = styled.div`
   .hidden{
       display:none;
   }
+
+  #edit-old-list{
+    font-size: 1rem;
+  }
 `;
 
 const OldList = (props) => {
   const { list } = props;
 
   const [editingOldList, setEditingOldList] = useState(false);
+  const [editListName, setNewListName] = useState(list[0]?.displayId);
 
   const expandOldList = (list) => {
     const modals = document.querySelectorAll(".old-list-modal");
@@ -107,25 +112,50 @@ const OldList = (props) => {
     for (const key in list[0]) {
       arr.push(list[0][key]?.item);
     };
-    for (let i = 0; i < 3; i++){
+    for (let i = 0; i < 3; i++) {
       arr.pop();
     }
     return arr;
-  }
-
+  };
   const modalPopulated = populateModal();
+
+  const handleChange = (e) => {
+    setNewListName(
+      e.target.value
+    );
+  };
+
+  const handleSaveNameChange = (e) => {
+    e.preventDefault();
+    
+  }
 
   return (
     <StyledOldList>
       <div
         onClick={(e) => {
-          if (e.target.id !== 'add-to-current-card') {
+          if (e.target.id !== 'add-to-current-card' && e.target.id !== 'edit-old-list' && e.target.id !== 'new-list-name-input') {
             expandOldList(list[0]);
             console.log(list[0]);
           }
         }}
       >
-        <h4>List {list[0].displayId} {!editingOldList && <span className="edit-old-list">⚙️</span>}</h4>
+        <span>
+          {!editingOldList && <h4>List {list[0].displayId}{!editingOldList && <span id="edit-old-list" onClick={() => setEditingOldList(true)}>📝</span>}</h4>}
+          {editingOldList &&
+            <form>
+              <input
+                name='newListName'
+                id='new-list-name-input'
+                type='text'
+                value={editListName}
+                onChange={handleChange}
+              />
+              <button></button>
+            </form>
+          }          
+        </span>
+        <h6>{new Date(list[0].id).toLocaleDateString()}</h6>
         {list[0].total ? <h5>Total: ${list[0].total}</h5> : ''}
         <ul>
           <li>{list[0][0].item}</li>
@@ -146,6 +176,7 @@ const OldList = (props) => {
 
       <div className="old-list-modal hidden" id={list[0].id} onClick={() => closeModal(list[0])}>
         <h4>List {list[0].displayId}</h4>
+        <h6>List created on {new Date(list[0].id).toLocaleDateString()}</h6>
         <ul>
           {modalPopulated.map(el => {
             return (

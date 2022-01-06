@@ -10,7 +10,8 @@ import {
     CLEAR_TOTAL,
     ADD_MEAL,
     DELETE_MEAL,
-    POPULATE_CURRENT_LIST
+    POPULATE_CURRENT_LIST,
+    EDIT_OLD_LIST
 } from "../actions";
 
 import { mealsData } from "../components/data/mealsData";
@@ -119,7 +120,12 @@ const reducer = (state = initialState, action) => {
             return ({
                 ...state,
                 currentListItems: [...state.currentListItems, ...ingredientsToAdd]
-            })
+            });
+        case EDIT_OLD_LIST:
+            return ({
+                ...state,
+                previousLists: [...state.previousLists, action.payload]
+            });
         default:
             return state
     }
