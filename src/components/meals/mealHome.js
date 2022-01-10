@@ -20,6 +20,7 @@ const StyledHomeMeal = styled.div`
     }
     text-align: center;
     border: 2px solid black;
+    border-radius: 16px;
     margin-bottom: 5%;
 
     :hover{

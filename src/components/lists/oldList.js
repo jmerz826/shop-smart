@@ -6,6 +6,7 @@ import ModalListItem from "./modalListItem";
 
 const StyledOldList = styled.div`
   border: 2px solid black;
+  border-radius: 16px;
   margin: 1%;
   padding-top: 4%;
   background-color: beige;
@@ -35,9 +36,16 @@ const StyledOldList = styled.div`
     border-radius: 4px;
   }
 
+  #edit-old-list{
+    visibility: hidden;
+  }
+
   :hover {
     cursor: pointer;
     .reveal-on-hover {
+      visibility: visible;
+    }
+    #edit-old-list{
       visibility: visible;
     }
   }
