@@ -82,7 +82,7 @@ const NewList = (props) => {
   
     const idGenerator = () => {
     idCounter++;
-    return idCounter;
+    return 'List ' + idCounter;
     }
   
     const handleChange = (e) => {

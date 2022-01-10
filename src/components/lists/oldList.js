@@ -127,21 +127,22 @@ const OldList = (props) => {
 
   const handleSaveNameChange = (e) => {
     e.preventDefault();
-    
+    list[0].displayId = editListName;
+    setEditingOldList(false);
   }
 
   return (
     <StyledOldList>
       <div
         onClick={(e) => {
-          if (e.target.id !== 'add-to-current-card' && e.target.id !== 'edit-old-list' && e.target.id !== 'new-list-name-input') {
+          if (e.target.id !== 'add-to-current-card' && e.target.id !== 'edit-old-list' && e.target.id !== 'new-list-name-input' && e.target.id !== 'save-list-name') {
             expandOldList(list[0]);
             console.log(list[0]);
           }
         }}
       >
         <span>
-          {!editingOldList && <h4>List {list[0].displayId}{!editingOldList && <span id="edit-old-list" onClick={() => setEditingOldList(true)}>📝</span>}</h4>}
+          {!editingOldList && <h4>{list[0].displayId}{!editingOldList && <span id="edit-old-list" onClick={() => setEditingOldList(true)}>📝</span>}</h4>}
           {editingOldList &&
             <form>
               <input
@@ -151,7 +152,7 @@ const OldList = (props) => {
                 value={editListName}
                 onChange={handleChange}
               />
-              <button></button>
+              <button onClick={handleSaveNameChange} id='save-list-name'>Save</button>
             </form>
           }          
         </span>
@@ -175,7 +176,7 @@ const OldList = (props) => {
       </div>
 
       <div className="old-list-modal hidden" id={list[0].id} onClick={() => closeModal(list[0])}>
-        <h4>List {list[0].displayId}</h4>
+        <h4>{list[0].displayId}</h4>
         <h6>List created on {new Date(list[0].id).toLocaleDateString()}</h6>
         <ul>
           {modalPopulated.map(el => {
