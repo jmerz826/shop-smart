@@ -18,7 +18,7 @@ import { mealsData } from "../components/data/mealsData";
 
 const initialState = {
     previousLists: [],
-    pantryItems: [],
+    pantryItems: ['bread', 'butter', 'eggs', 'milk'],
     currentListItems: [],
     listTotal: 0,
     meals: mealsData
