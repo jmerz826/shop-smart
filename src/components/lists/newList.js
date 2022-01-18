@@ -64,6 +64,43 @@ const StyledNewList = styled.div`
   .hidden{
       display:none;
   }
+  #add-item-btn{
+    display:block;
+    
+  }
+
+  @media screen and (max-width: 1113px){
+    #add-item-btn{
+      width:20%;
+      padding:1%;
+      margin-left: 40%;
+      margin-top: 1%;
+      border: 1px solid black;
+    }
+  }
+
+  @media screen and (max-width: 985px){
+    form label input{
+      display:block;
+      margin: auto;
+      text-align: center;
+    }
+    label p {
+      text-align: center;
+    }
+    
+    #add-item-btn{
+      width: auto;
+    }
+  }
+
+  @media screen and (max-width: 864px){
+    h2{
+      text-align: center;
+      margin: 0 2%;
+    }
+  }
+
 `;
 
 const initialFormValues = {
@@ -143,7 +180,7 @@ const NewList = (props) => {
                 <button onClick={toggleModal}>Oops, no</button>
             </div>
             <form>
-                <label> Add item: 
+                <label> <p>Add item:</p> 
                     <input
                         type='text'
                         name='item'
@@ -153,7 +190,7 @@ const NewList = (props) => {
                         id='item-input'
                     />
                 </label>
-                <label> Price($):
+                <label> <p>Price($):</p>
                     <input
                         type='number'
                         name='price'
@@ -162,7 +199,7 @@ const NewList = (props) => {
                         placeholder="optional"
                     />
                 </label>
-                <button onClick={handleAdd}>Add item</button>
+                <button id='add-item-btn' onClick={handleAdd}>Add item</button>
                 <div className="bottom-buttons">
                     <button onClick={handleSave} className='bottom-btn'>Save List!</button>
                     <button onClick={toggleModal} className='bottom-btn'>Clear List</button>
